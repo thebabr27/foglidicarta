@@ -20,7 +20,7 @@ a:focus {text-decoration: none;}
 
 .swiper-wrapper {height: 100%;}
 
-.swiper-slide {overflow-y: scroll;}
+.swiper-slide {overflow-y: auto; word-wrap: break-word;}
 
 section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
 
@@ -37,11 +37,29 @@ body {
   top: 0;
   z-index:10;
 }
+@media only screen and (min-width: 770px) {
+ 
+	#navbarlogo {
+		width: 50px!important;
+	height: auto;
+	}
+	.navbar-brand {
+		font-size: 1.5em;
+	}
+}
+#navbarlogo {
+	border-radius: 5em;
+}
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm  shadow rounded ">
-<a href="index.html" class="navbar-brand">Fogli Di Carta</a>
+<nav class="navbar navbar-expand-lg fixed-top  shadow rounded "> 
+<div>
+<a class="navbar-brand" href="index.html">
+	<div class="d-inline-block align-middle"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
+</a>
+<a class="navbar-brand" href="index.html">Fogli Di Carta</a>
+</div>
 <button class="navbar-toggler" type="button" 
 data-toggle="collapse" data-target="#theNavbar" 
 aria-controls="theNavbar" aria-expanded="false" 
@@ -54,6 +72,8 @@ aria-label="Toggle navigation">
 <li><a class="nav-link">Le storie</a></li>
 <li><a href="newStory.html" class="nav-link">Condividi la tua storia</a></li>
 <li><a href="contacts.html" class="nav-link">Contatti</a></li>
+<li><a href="en\index.html" class="nav-link">English version</a></li>
+
 </ul>
 </div>
 </nav>
@@ -62,9 +82,10 @@ aria-label="Toggle navigation">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 		<br>	<br>	<br>	<br>	
-			<div class="spinner-border mt-5" role="status">
-			  <span class="sr-only">Loading...</span>
-			</div></div>
+				<div class="spinner-border mt-5" role="status">
+				  <span class="sr-only">Loading...</span>
+				</div>
+			</div>
 		</div>
 </div></main>
 <section class="">
@@ -74,12 +95,12 @@ aria-label="Toggle navigation">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Fogli Di Carta</a></li>
-				<li><a class="small" href="a">Copyright 2019</a></li>
+				<li><a class="small">Copyright 2019</a></li>
 			</ul>
 		</div>
 		<div class="col-6 col-md-4 order-md-3">
 			<ul class="list-unstyled text-small">
-				<li><a href="a">Follow us</a></li>
+				<li><a>Follow us</a></li>
 				<li>
 				<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span></a>
 				<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span></a>
@@ -93,6 +114,7 @@ aria-label="Toggle navigation">
 				<li><a href="newStory.html">Condividi la tua storia</a></li>
 				<li><a href="contacts.html">Contatti</a></li>
 				<li><a href="admin.html">Admin</a></li>
+				<li><a href="login.html">Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -112,14 +134,14 @@ aria-label="Toggle navigation">
 <script>
 
    // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAyPpwYB1X-e5VnUkUgJ2orPcDr9ybDHEU",
-    authDomain: "draggable-9f92b.firebaseapp.com",
-    databaseURL: "https://draggable-9f92b.firebaseio.com",
-    projectId: "draggable-9f92b",
-    storageBucket: "draggable-9f92b.appspot.com",
-    messagingSenderId: "1010593277055",
-    appId: "1:1010593277055:web:1b729dc7368b8f6f"
+var firebaseConfig = {
+    apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
+    authDomain: "foglidicarta-faccf.firebaseapp.com",
+    databaseURL: "https://foglidicarta-faccf.firebaseio.com",
+    projectId: "foglidicarta-faccf",
+    storageBucket: "foglidicarta-faccf.appspot.com",
+    messagingSenderId: "211559477338",
+    appId: "1:211559477338:web:3a3262a4cdaf433cd0e863"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
@@ -128,48 +150,55 @@ aria-label="Toggle navigation">
 var ref = firebase.database().ref("published");
 ref.once("value")
   .then(function(snapshot) {
-	var nstories = Object.keys(snapshot.val());
-	//console.log("intero oggetto " + nstories);
-	//console.log("n. elementi " + nstories.length);
-	//var first = nstories[0];
-	//console.log("path primo elemento " + first);
-	//var titolo = snapshot.child(first).val().titolo;
-	//var storia = snapshot.child(first).val().storia;
-	//console.log("contenuto "+first+" "+titolo + "\n" + storia);
-	var tit = []; var aut = []; var par = []; var titolo = ""; var storia = "";
-	var i; var autore = "";
-	for (i = 0; i< nstories.length; i++) {
-		titolo = snapshot.child(nstories[i]).val().titolo;
-		autore = snapshot.child(nstories[i]).val().autore;
-		storia = snapshot.child(nstories[i]).val().storia;
-		tit.push(titolo);
-		aut.push(autore);
-		par.push(storia);
-		
-	}
-	var story = "";
-	for (i in tit)  {
-	if (tit[i]!=undefined) {
-	if (i <= 0) {pt = " class=\"pt-5\"";}
-		story +=
-		"<div class=\"swiper-slide\">"+"\n"+
-		"<h2"+pt+">"+tit[i]+"</h2>"+"\n"+
-		"<h6>"+aut[i]+"</h6>"+"\n"+
-		"<p>"+par[i]+"</p>"+"\n"+
-		"</div>"+"\n";
+  try {
+					var nstories = Object.keys(snapshot.val());
+					//console.log("intero oggetto " + nstories);
+					//console.log("n. elementi " + nstories.length);
+					//var first = nstories[0];
+					//console.log("path primo elemento " + first);
+					//var titolo = snapshot.child(first).val().titolo;
+					//var storia = snapshot.child(first).val().storia;
+					//console.log("contenuto "+first+" "+titolo + "\n" + storia);
+					var tit = []; var aut = []; var par = []; var titolo = ""; var storia = "";
+					var i; var autore = "";
+					for (i = 0; i< nstories.length; i++) {
+						titolo = snapshot.child(nstories[i]).val().titolo;
+						autore = snapshot.child(nstories[i]).val().autore;
+						storia = snapshot.child(nstories[i]).val().storia;
+						tit.push(titolo);
+						aut.push(autore);
+						par.push(storia);
+						
+					}
+					var story = "";
+					for (i in tit)  {
+					if (tit[i]!=undefined) {
+					if (i <= 0) {pt = " class=\"pt-5\"";}
+						story +=
+						"<div class=\"swiper-slide\">"+"\n"+
+						"<h2"+pt+">"+tit[i]+"</h2>"+"\n"+
+						"<h6>"+aut[i]+"</h6>"+"\n"+
+						"<p>"+par[i]+"</p>"+"\n"+
+						"</div>"+"\n";
+						}
+					}
+					var all = 
+					
+					"<div class=\"swiper-wrapper\">"+"\n"+
+					story+"\n"+
+					"</div>"+"\n"+
+					"<div class=\"swiper-pagination\"></div>"+"\n"+
+					"<div class=\"swiper-button-prev swiper-button-black\"></div>"+"\n"+
+					"<div class=\"swiper-button-next swiper-button-black\"></div>"+"\n"+
+					"";
+					document.getElementById("all").innerHTML = all;
+		} catch(err) {
+			document.getElementById("all").innerHTML = "<div class ='my-5'>"+"\n"+
+			"<h2>Nessuna storia ancora pubblicata</h2>"+"\n"+
+			'<a href="newStory.html"  class="my-5 btn btn-secondary btn-lg btn-block">Racconta la tua storia</a>'+"\n"+
+			"</div>\n";
 		}
-	}
-	var all = 
-	
-    "<div class=\"swiper-wrapper\">"+"\n"+
-	story+"\n"+
-	"</div>"+"\n"+
-	"<div class=\"swiper-pagination\"></div>"+"\n"+
-    "<div class=\"swiper-button-prev swiper-button-black\"></div>"+"\n"+
-    "<div class=\"swiper-button-next swiper-button-black\"></div>"+"\n"+
-	"";
-	document.getElementById("all").innerHTML = all;
-	
+					
 	 var mySwiper = new Swiper (
 	'.swiper-container', {
 	direction: 'horizontal',
@@ -186,23 +215,6 @@ ref.once("value")
 		},
 	});
   });
-  
-
-	 var mySwiper = new Swiper (
-	'.swiper-container', {
-	direction: 'horizontal',
-	loop: true, 
-	pagination: {	
-		el: '.swiper-pagination',
-		dynamicBullets: true,
-	}, 
-	navigation: {
-		nextEl: '.swiper-button-next', 
-		prevEl: '.swiper-button-prev',
-		}, scrollbar: {
-			el: '.swiper-scrollbar',
-		},
-	});
 	</script>
 </body>
 </html>

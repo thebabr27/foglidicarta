@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -50,26 +49,29 @@ body {
 #navbarlogo {
 	border-radius: 5em;
 }
+.hide {
+display: none;
+}
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-md fixed-top  shadow rounded "> 
+<nav class="navbar navbar-expand-md fixed-top shadow rounded "> 
 <div>
 <a class="navbar-brand" href="index.html">
 	<div class="d-inline-block align-middle"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
 </a>
 <a class="navbar-brand" href="index.html">Fogli Di Carta</a>
 </div>
-<button class="navbar-toggler" type="button"
-data-toggle="collapse" data-target="#theNavbar"
-aria-controls="theNavbar" aria-expanded="false"
+<button class="navbar-toggler" type="button" 
+data-toggle="collapse" data-target="#theNavbar" 
+aria-controls="theNavbar" aria-expanded="false" 
 aria-label="Toggle navigation">
 	<span class="fa fa-bars"></span>
 </button>
 <div id="theNavbar" class="navbar-collapse collapse ">
 <ul class="navbar-nav ml-auto">
-<li><a href="theProject.html" class="nav-link">Il progetto</a></li>
-<li><a href="allStories.html" class="nav-link">Le storie</a></li>
+<li><a href="theProject.html"  class="nav-link">Il progetto</a></li>
+<li><a class="nav-link">Le storie</a></li>
 <li><a href="newStory.html" class="nav-link">Condividi la tua storia</a></li>
 <li><a href="contacts.html" class="nav-link">Contatti</a></li>
 <li><a href="en\index.html" class="nav-link">English version</a></li>
@@ -77,35 +79,22 @@ aria-label="Toggle navigation">
 </ul>
 </div>
 </nav>
-<div class="text-center">
-<h1 id="cover" class="position-absolute text-light w-100" style="margin-top:30%">FOGLI DI CARTA</h1>
-<img class="w-100" src="src/img/cover.png">
+<main class="container my-5">
+<form>
+  <div  id="signin" class="form-group">
+    <h1 class="text-center">Please login only as Admin</h1>
+  </div>
+  <div class="form-group">
+    <input id="inputEmail" class="form-control bg-transparent"  type="email" name="" value="" placeholder="email">
+  </div>
+  <div class="form-group">
+    <input id="inputPassword"class="form-control bg-transparent"  type="password" name="" value="" placeholder="password">
+  </div>
+  <div class="form-group">
+    <button id="loginButton" class="btn btn-secondary btn-block" type="button" name="button">login</button>
+    <button id="logoutButton" class="btn btn-secondary hide btn-block" type="button" name="button">logout</button>
 </div>
-<main class="container">
-<br>
-<h2 class="mt-3 text-center">
-Un giorno ho deciso di raccontare la mia storia a qualcuno che avesse voglia di ascoltarla. E quel qualcuno, a quel punto, decise di raccontarmi la sua.
-</h2>
-	<div class="row">
-		<div class="col-12 my-5">
-			<a href="newStory.html" class="btn btn-secondary btn-lg btn-block">Racconta la tua storia</a>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6 col-12">
-			<img  class="w-100 mb-5" src="src/img/cover2.png">
-		</div>
-		<div id="text" class="col-md-6 col-12">
-			<h4>Grazie al desiderio di una ragazza che ha subito abusi sessuali da quando era bambina e fino alla sua adolescenza, nasce “Fogli di Carta”. L’obiettivo è quello di generare un cambiamento culturale che porti al rispetto e ad una maggior tutela di minori, bambine e bambini. Anche la tua storia è importante... Può aiutare altri a condividere la propria e a non sentirsi "invisibili".
-			</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12 my-5">
-			<a href="allStories.html" class="btn btn-secondary btn-lg btn-block">Leggi le altre storie</a>
-			<a href="newStory.html"  class="btn btn-secondary btn-lg btn-block">Racconta la tua storia</a>
-		</div>
-	</div>
+</form>
 </main>
 <section class="">
 <footer class="border-top pt-4">
@@ -113,13 +102,13 @@ Un giorno ho deciso di raccontare la mia storia a qualcuno che avesse voglia di 
 	<div class="row">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
-				<li><a>Fogli Di Carta</a></li>
-				<li><a class="small" href="a">Copyright 2019</a></li>
+				<li><a href="index.html">Fogli Di Carta</a></li>
+				<li><a class="small">Copyright 2019</a></li>
 			</ul>
 		</div>
 		<div class="col-6 col-md-4 order-md-3">
 			<ul class="list-unstyled text-small">
-				<li><a href="a">Follow us</a></li>
+				<li><a>Follow us</a></li>
 				<li>
 				<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span></a>
 				<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span></a>
@@ -140,15 +129,68 @@ Un giorno ho deciso di raccontare la mia storia a qualcuno che avesse voglia di 
 </div>
 </footer>
 </section>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
 
+<script>
+   // Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
+    authDomain: "foglidicarta-faccf.firebaseapp.com",
+    databaseURL: "https://foglidicarta-faccf.firebaseio.com",
+    projectId: "foglidicarta-faccf",
+    storageBucket: "foglidicarta-faccf.appspot.com",
+    messagingSenderId: "211559477338",
+    appId: "1:211559477338:web:3a3262a4cdaf433cd0e863"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  // UI elements declarations
+  const inputEmail = document.getElementById("inputEmail");
+  const inputPassword = document.getElementById("inputPassword");
+  const loginButton = document.getElementById("loginButton");
+  const logoutButton = document.getElementById("logoutButton");
+  const signInButton = document.getElementById("signInButton");
+  const signIn = document.getElementById("signin");
+
+  // logged user auth declaration
+  const auth = firebase.auth();
+
+  loginButton.addEventListener("click", e => {
+      const email = inputEmail.value;
+      const pass = inputPassword.value;
+      const promise = auth.signInWithEmailAndPassword(email,pass);
+      promise.catch(e => console.log("err"));
+  });
+
+  logoutButton.addEventListener("click", e => {
+  firebase.auth().signOut();
+  });
+  
+ firebase.auth().onAuthStateChanged(firebaseUser => {
+  	if (firebaseUser) {
+  		console.log(firebaseUser);
+  		logoutButton.classList.remove("hide");
+  		inputEmail.classList.add("hide");
+  		inputPassword.classList.add("hide");
+  		loginButton.classList.add("hide");
+  		signIn.classList.add("hide");
+
+
+  		} else {
+  		console.log("not logged in");
+  		logoutButton.classList.add("hide");
+  		loginButton.classList.remove("hide");
+  		inputEmail.classList.remove("hide");
+  		inputPassword.classList.remove("hide");
+  	}
+
+  });
+ 
+
+  
+</script>
 </body>
 </html>

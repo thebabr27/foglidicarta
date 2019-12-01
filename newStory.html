@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
+
 <style>
 @import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
 
@@ -35,31 +36,30 @@ body {
   position: sticky;
   background-size: cover; 
   top: 0;
-  z-index:10;
 }
-
-.btn-secondary {
-background-color: #B8B494;
-border:none;
-text-shadow: 1px 1px #000000;
+@media only screen and (min-width: 770px) {
+ 
+	#navbarlogo {
+		width: 50px!important;
+	height: auto;
+	}
+	.navbar-brand {
+		font-size: 1.5em;
+	}
 }
-
-@media only screen and (min-width: 500px) {
- #cover {
-    font-size:3em;
-  }
-}
-
-@media only screen and (max-width: 770px) {
- #text{
-   text-align: center;
-  }
+#navbarlogo {
+	border-radius: 5em;
 }
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm  shadow rounded ">
-<a href="index.html"  class="navbar-brand">Fogli Di Carta</a>
+<nav class="navbar navbar-expand-md fixed-top shadow rounded "> 
+<div>
+<a class="navbar-brand" href="index.html">
+	<div class="d-inline-block align-middle"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
+</a>
+<a class="navbar-brand" href="index.html">Fogli Di Carta</a>
+</div>
 <button class="navbar-toggler" type="button" 
 data-toggle="collapse" data-target="#theNavbar" 
 aria-controls="theNavbar" aria-expanded="false" 
@@ -72,21 +72,27 @@ aria-label="Toggle navigation">
 <li><a href="allStories.html" class="nav-link">Le storie</a></li>
 <li><a class="nav-link">Condividi la tua storia</a></li>
 <li><a href="contacts.html" class="nav-link">Contatti</a></li>
+<li><a href="en\index.html" class="nav-link">English version</a></li>
+
 </ul>
 </div>
 </nav>
-<main class="container">
-	<div id="all" class="form-group>
-<label>Autore</label>
-<input id="inputAutore"><br>
-<label>Titolo</label>
-<input id="inputTitolo" class="form-control bg-transparent" placeholder="Inserire il titolo della storia"><br>
-<label>Autore</label>
-<input id="inputAutore" class="form-control  bg-transparent" placeholder="Inserire l'autore della storia (nome di fantasia)"><br>
+<main class="container my-5">
+	<h2 class="text-center my-5">Racconta qui la tua storia</h2>
+	<div id="all" class="form-group">
+<label>Nome</label>
+<input id="inputAutore" class="form-control  bg-transparent" placeholder="Tutela la tua privacy, scrivi un nome di fantasia." required><br>
 <label>Email</label>
 <input id="inputEmail" class="form-control  bg-transparent" placeholder="Inserire un email (facoltativa)"><br>
+<label>Titolo</label>
+<input id="inputTitolo" class="form-control  bg-transparent" placeholder="Da' un titolo a questa storia." required><br>
 <label>Testo</label>
-<textarea id="inputStoria"  class="form-control  bg-transparent" rows="4" cols="50" placeholder="Inserire qui il testo della storia"></textarea><br>
+<textarea id="inputStoria"  class="form-control  bg-transparent" rows="4" cols="50" placeholder="Inserire qui il testo della storia" required></textarea><br>
+<input type="checkbox" checked=true onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" name="terms"> 
+<label>  Inviando la tua storia, accetti i <a href="termini.html" target="X">termini e condizioni del sito.</a></label>
+
+
+
 <button class="my-5 btn btn-secondary btn-block" onclick="send()">Invia</button>
 </div></main>
 <section class="">
@@ -96,12 +102,12 @@ aria-label="Toggle navigation">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Fogli Di Carta</a></li>
-				<li><a class="small" href="a">Copyright 2019</a></li>
+				<li><a class="small">Copyright 2019</a></li>
 			</ul>
 		</div>
 		<div class="col-6 col-md-4 order-md-3">
 			<ul class="list-unstyled text-small">
-				<li><a href="a">Follow us</a></li>
+				<li><a>Follow us</a></li>
 				<li>
 				<a href="a"><span class="fab fa-facebook-f"></span></a>
 				<a href="a"><span class="fab fa-instagram"></span></a>
@@ -116,6 +122,7 @@ aria-label="Toggle navigation">
 				<li><a href="newStory.html">Condividi la tua storia</a></li>
 				<li><a href="contacts.html">Contatti</a></li>
 				<li><a href="admin.html">Admin</a></li>
+				<li><a href="login.html">Login</a></li>
 			</ul>
 		</div>
 	</div>
@@ -135,14 +142,14 @@ aria-label="Toggle navigation">
 <script>
 
    // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAyPpwYB1X-e5VnUkUgJ2orPcDr9ybDHEU",
-    authDomain: "draggable-9f92b.firebaseapp.com",
-    databaseURL: "https://draggable-9f92b.firebaseio.com",
-    projectId: "draggable-9f92b",
-    storageBucket: "draggable-9f92b.appspot.com",
-    messagingSenderId: "1010593277055",
-    appId: "1:1010593277055:web:1b729dc7368b8f6f"
+var firebaseConfig = {
+    apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
+    authDomain: "foglidicarta-faccf.firebaseapp.com",
+    databaseURL: "https://foglidicarta-faccf.firebaseio.com",
+    projectId: "foglidicarta-faccf",
+    storageBucket: "foglidicarta-faccf.appspot.com",
+    messagingSenderId: "211559477338",
+    appId: "1:211559477338:web:3a3262a4cdaf433cd0e863"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);

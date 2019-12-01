@@ -36,12 +36,29 @@ body {
   background-size: cover; 
   top: 0;
 }
-
+@media only screen and (min-width: 770px) {
+ 
+	#navbarlogo {
+		width: 50px!important;
+	height: auto;
+	}
+	.navbar-brand {
+		font-size: 1.5em;
+	}
+}
+#navbarlogo {
+	border-radius: 5em;
+}
 </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm  shadow rounded ">
-<a href="index.html" class="navbar-brand">Fogli Di Carta</a>
+<nav class="navbar navbar-expand-md fixed-top shadow rounded "> 
+<div>
+<a class="navbar-brand" href="index.html">
+	<div class="d-inline-block align-middle"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
+</a>
+<a class="navbar-brand" href="index.html">Fogli Di Carta</a>
+</div>
 <button class="navbar-toggler" type="button" 
 data-toggle="collapse" data-target="#theNavbar" 
 aria-controls="theNavbar" aria-expanded="false" 
@@ -54,21 +71,22 @@ aria-label="Toggle navigation">
 <li><a href="allStories.html" class="nav-link">Le storie</a></li>
 <li><a href="newStory.html" class="nav-link">Condividi la tua storia</a></li>
 <li><a class="nav-link">Contatti</a></li>
+<li><a href="en\index.html" class="nav-link">English version</a></li>
+
 </ul>
 </div>
 </nav>
 <main class="container mb-5">
 <h1 class="text-center mt-5 mb-2">Contatti</h1>
 <br>
-<p>Email: mail@mail.it</p>
+<p>Email: progetto.foglidicarta@gmail.com</p>
 <p>Phone: 01234567</p>
 <br>
 <h5>Social: </h5>
-<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span> Facebook: </a>
+<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span> Facebook </a>
 <br>
-<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span> Instagram: </a>
+<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span> Instagram </a>
 <br>
-<a><span class="fab fa-twitter"></span> Twitter: </a>
 </main>
 <section class="">
 <footer class="border-top pt-4">
@@ -77,12 +95,12 @@ aria-label="Toggle navigation">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Fogli Di Carta</a></li>
-				<li><a class="small" href="a">Copyright 2019</a></li>
+				<li><a class="small">Copyright 2019</a></li>
 			</ul>
 		</div>
 		<div class="col-6 col-md-4 order-md-3">
 			<ul class="list-unstyled text-small">
-				<li><a href="a">Follow us</a></li>
+				<li><a>Follow us</a></li>
 				<li>
 				<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span></a>
 				<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span></a>
@@ -96,6 +114,7 @@ aria-label="Toggle navigation">
 				<li><a href="newStory.html">Condividi la tua storia</a></li>
 				<li><a href="contacts.html">Contatti</a></li>
 				<li><a href="admin.html">Admin</a></li>
+				<li><a href="login.html">Login</a></li>
 			</ul>
 		</div>
 	</div>

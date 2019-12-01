@@ -1,0 +1,260 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
+
+* {font-family: 'Handlee', cursive;} 
+
+a {color: black;}
+
+a:focus {text-decoration: none;}
+
+.swiper-container {margin-top:0!important;}
+
+.swiper-wrapper {height: 100%;}
+
+.swiper-slide {overflow-y: scroll;}
+
+section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
+
+body {
+ background-image: url("src/img/sfondo.png");
+ background-repeat: repeat;
+ background-size: cover; 
+}
+.navbar {
+ background-image: url("src/img/sfondo.png");
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  background-size: cover; 
+  top: 0;
+}
+@media only screen and (min-width: 770px) {
+ 
+	#navbarlogo {
+		width: 50px!important;
+	height: auto;
+	}
+	.navbar-brand {
+		font-size: 1.5em;
+	}
+}
+#navbarlogo {
+	border-radius: 5em;
+}
+.hide {
+display: none;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md fixed-top shadow rounded "> 
+<div>
+<a class="navbar-brand" href="index.html">
+	<div class="d-inline-block align-middle"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
+</a>
+<a class="navbar-brand" href="index.html">Fogli Di Carta</a>
+</div>
+<button class="navbar-toggler" type="button" 
+data-toggle="collapse" data-target="#theNavbar" 
+aria-controls="theNavbar" aria-expanded="false" 
+aria-label="Toggle navigation">
+	<span class="fa fa-bars"></span>
+</button>
+<div id="theNavbar" class="navbar-collapse collapse ">
+<ul class="navbar-nav ml-auto">
+<li><a href="theProject.html"  class="nav-link">Il progetto</a></li>
+<li><a href="allStories.html"  class="nav-link">Le storie</a></li>
+<li><a href="newStory.html" class="nav-link">Condividi la tua storia</a></li>
+<li><a href="contacts.html" class="nav-link">Contatti</a></li>
+<li><a href="en\index.html" class="nav-link">English version</a></li>
+
+</ul>
+</div>
+</nav>
+<main class="container my-5">
+<div id="tableresponsive" class="table-responsive text-center">
+<table id="table" class="table table-striped table-sm">
+	<div class="spinner-border mt-5" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+</table>
+</div>
+</main>
+<section class="">
+<footer class="border-top pt-4">
+<div class="container">
+	<div class="row">
+		<div class="col-6 col-md-4">
+			<ul class="list-unstyled text-small">
+				<li><a href="index.html">Fogli Di Carta</a></li>
+				<li><a class="small">Copyright 2019</a></li>
+			</ul>
+		</div>
+		<div class="col-6 col-md-4 order-md-3">
+			<ul class="list-unstyled text-small">
+				<li><a>Follow us</a></li>
+				<li>
+				<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span></a>
+				<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-6 col-md-4">
+			<ul class="list-unstyled text-small">
+				<li><a href="theProject.html">Il progetto</a></li>
+				<li><a href="allStories.html">Le storie</a></li>
+				<li><a href="newStory.html">Condividi la tua storia</a></li>
+				<li><a href="contacts.html">Contatti</a></li>
+				<li><a href="admin.html">Admin</a></li>
+				<li><a href="login.html">Login</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</footer>
+</section>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+
+<script>
+   // Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
+    authDomain: "foglidicarta-faccf.firebaseapp.com",
+    databaseURL: "https://foglidicarta-faccf.firebaseio.com",
+    projectId: "foglidicarta-faccf",
+    storageBucket: "foglidicarta-faccf.appspot.com",
+    messagingSenderId: "211559477338",
+    appId: "1:211559477338:web:3a3262a4cdaf433cd0e863"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+  const outputTitolo = document.getElementById("outputTitolo");
+  const outputStoria = document.getElementById("outputStoria");
+  const outputAutore = document.getElementById("outputAutore");
+  const outputEmail = document.getElementById("outputEmail");
+  
+var ref = firebase.database().ref("waitinglist");
+
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+  	if (firebaseUser) {
+      currentUser=firebaseUser;
+  		if (currentUser.uid = "mwzijafq6mT5GnPBA9mEfFM0bYs2") {
+				
+								ref.once("value")
+								  .then(function(snapshot) {
+								var mytable = "";
+								 try {
+									var nstories = Object.keys(snapshot.val());
+									var aut = []; var tit = []; var par = []; var mail = [];
+									var autore = ""; var titolo = ""; var storia = ""; 	var email = ""; 
+									var i;
+									for (i = 0; i< nstories.length; i++) {
+										autore = snapshot.child(nstories[i]).val().autore;
+										titolo = snapshot.child(nstories[i]).val().titolo;
+										storia = snapshot.child(nstories[i]).val().storia;
+										email = snapshot.child(nstories[i]).val().email;
+										aut.push(autore);
+										tit.push(titolo);
+										par.push(storia);
+										mail.push(email);
+									}
+								} catch(err) {
+									mytable = "<h2>Nessuna storia da pubblicare</h2>\n";
+								}
+								var i;
+								for (i in tit) {
+										autore = snapshot.child(nstories[i]).val().autore;
+									titolo = snapshot.child(nstories[i]).val().titolo;
+									storia = snapshot.child(nstories[i]).val().storia;
+									email = snapshot.child(nstories[i]).val().email;
+									mytable+="<tr id=\""+i+"\">"+"\n"+
+									"<td>"+autore+"</td>"+"\n"+
+									"<td>"+titolo+"</td>"+"\n"+
+									"<td>"+storia+
+									"</td>"+"\n"+
+									"<td><div class='btn-group mr-2'>"+"\n"+
+									"<button class='btn btn-sm btn-outline-success' onclick=\"publish("+i+")\">Publish</button>"+"\n"+
+									"<button class='btn btn-sm btn-outline-danger' onclick=\"mydelete("+i+")\">Delete</button></div></td>"+"\n"+
+								  "</tr>"+"\n"
+								  ;
+								  }
+								  
+								var element = document.getElementsByClassName("spinner-border")[0];
+								element.parentNode.removeChild(element);
+								document.getElementById("tableresponsive").innerHTML = 
+								'<table id="table" class="table table-striped table-sm">'+"\n"+
+								  "<h3>Waiting List</h3>"+"\n"+
+								  "<tr>"+"\n"+
+									"<th>Author</th>"+"\n"+
+									"<th>Title</th>"+"\n"+
+									"<th>Story</th>"+"\n"+
+									"<th>Edit</th>"+"\n"+
+									"</tr>"+"\n"+
+								mytable+
+								'</table>';
+								});
+					}
+  		} else {
+  		console.log("not logged in");
+		
+		var element = document.getElementsByClassName("spinner-border")[0];
+								element.parentNode.removeChild(element);
+		document.getElementById("tableresponsive").innerHTML = 
+		'<h1>Sorry, not allowed to see this content.</h1>'+'\n'+
+		'<a href="index.html" class="btn text-white btn-link btn-secondary btn-block">Torna alla home</a>'+'\n'+
+		'';
+  	}
+  });
+  
+  function mydelete(ind) {   ref.once("value")
+  .then(function(snapshot) {
+	var nstories = Object.keys(snapshot.val());
+	firebase.database().ref('waitinglist/'+nstories[ind]).remove();
+	location.reload();
+	});
+	}
+	
+  function publish(ind) {
+   ref.once("value").then(function(snapshot) {
+  
+		var nstories = Object.keys(snapshot.val());
+		var aut = []; var tit = []; var par = []; var mail = [];
+		var autore = ""; var titolo = ""; var storia = ""; 	var email = ""; 
+		var i;
+		for (i = 0; i< nstories.length; i++) {
+			autore = snapshot.child(nstories[i]).val().autore;
+			titolo = snapshot.child(nstories[i]).val().titolo;
+			storia = snapshot.child(nstories[i]).val().storia;
+			email = snapshot.child(nstories[i]).val().email;
+			aut.push(autore);
+			tit.push(titolo);
+			par.push(storia);
+			mail.push(email);
+		}
+		document.getElementById(ind).innerHTML = "";
+		
+		firebase.database().ref('published/'+nstories[ind]).set({
+		autore: aut[ind],
+		titolo: tit[ind],
+		storia: par[ind],
+		email: mail[ind],
+	  });
+	firebase.database().ref('waitinglist/'+nstories[ind]).remove();
+	location.reload();
+	});
+  };
+
+</script>
+</body>
+</html>

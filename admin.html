@@ -151,9 +151,6 @@ var ref = firebase.database().ref("waitinglist");
 
   firebase.auth().onAuthStateChanged(firebaseUser => {
   	if (firebaseUser) {
-      currentUser=firebaseUser;
-  		if (currentUser.uid = "abc") {
-				
 								ref.once("value")
 								  .then(function(snapshot) {
 								var mytable = "";
@@ -217,7 +214,7 @@ var ref = firebase.database().ref("waitinglist");
 		'<h1>Sorry, not allowed to see this content.</h1>'+'\n'+
 		'<a href="index.html" class="btn text-white btn-link btn-secondary btn-block">Torna alla home</a>'+'\n'+
 		'';
-  	}
+  	
   });
   
   function mydelete(ind) {   ref.once("value")

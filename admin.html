@@ -152,7 +152,7 @@ var ref = firebase.database().ref("waitinglist");
   firebase.auth().onAuthStateChanged(firebaseUser => {
   	if (firebaseUser) {
       currentUser=firebaseUser;
-  		if (currentUser.uid = "mwzijafq6mT5GnPBA9mEfFM0bYs2") {
+  		if (currentUser.uid = "abc") {
 				
 								ref.once("value")
 								  .then(function(snapshot) {

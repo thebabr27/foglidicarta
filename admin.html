@@ -149,46 +149,43 @@ var firebaseConfig = {
   
 var ref = firebase.database().ref("waitinglist");
 
-  firebase.auth().onAuthStateChanged(firebaseUser => {
+firebase.auth().onAuthStateChanged(firebaseUser => {
   	if (firebaseUser) {
-								ref.once("value")
-								  .then(function(snapshot) {
-								var mytable = "";
-								 try {
-									var nstories = Object.keys(snapshot.val());
-									var aut = []; var tit = []; var par = []; var mail = [];
-									var autore = ""; var titolo = ""; var storia = ""; 	var email = ""; 
-									var i;
-									for (i = 0; i< nstories.length; i++) {
-										autore = snapshot.child(nstories[i]).val().autore;
-										titolo = snapshot.child(nstories[i]).val().titolo;
-										storia = snapshot.child(nstories[i]).val().storia;
-										email = snapshot.child(nstories[i]).val().email;
-										aut.push(autore);
-										tit.push(titolo);
-										par.push(storia);
-										mail.push(email);
-									}
-								} catch(err) {
-									mytable = "<h2>Nessuna storia da pubblicare</h2>\n";
+								ref.once("value").then(function(snapshot) {
+														var mytable = "";
+														 try {
+															var nstories = Object.keys(snapshot.val());
+															var aut = []; var tit = []; var par = []; var mail = [];
+															var autore = ""; var titolo = ""; var storia = ""; 	var email = ""; 
+															var i;
+															for (i = 0; i< nstories.length; i++) {
+																autore = snapshot.child(nstories[i]).val().autore;
+																titolo = snapshot.child(nstories[i]).val().titolo;
+																storia = snapshot.child(nstories[i]).val().storia;
+																email = snapshot.child(nstories[i]).val().email;
+																aut.push(autore);
+																tit.push(titolo);
+																par.push(storia);
+																mail.push(email);
+															}
+														} catch(err) {
+															mytable = "<h2>Nessuna storia da pubblicare</h2>\n";
 								}
-								var i;
-								for (i in tit) {
-										autore = snapshot.child(nstories[i]).val().autore;
-									titolo = snapshot.child(nstories[i]).val().titolo;
-									storia = snapshot.child(nstories[i]).val().storia;
-									email = snapshot.child(nstories[i]).val().email;
-									mytable+="<tr id=\""+i+"\">"+"\n"+
-									"<td>"+autore+"</td>"+"\n"+
-									"<td>"+titolo+"</td>"+"\n"+
-									"<td>"+storia+
-									"</td>"+"\n"+
-									"<td><div class='btn-group mr-2'>"+"\n"+
-									"<button class='btn btn-sm btn-outline-success' onclick=\"publish("+i+")\">Publish</button>"+"\n"+
-									"<button class='btn btn-sm btn-outline-danger' onclick=\"mydelete("+i+")\">Delete</button></div></td>"+"\n"+
-								  "</tr>"+"\n"
-								  ;
-								  }
+								var i; for (var i in tit) {
+													autore = snapshot.child(nstories[i]).val().autore;
+													titolo = snapshot.child(nstories[i]).val().titolo;
+													storia = snapshot.child(nstories[i]).val().storia;
+													email = snapshot.child(nstories[i]).val().email;
+													mytable+="<tr id=\""+i+"\">"+"\n"+
+													"<td>"+autore+"</td>"+"\n"+
+													"<td>"+titolo+"</td>"+"\n"+
+													"<td>"+storia+
+													"</td>"+"\n"+
+													"<td><div class='btn-group mr-2'>"+"\n"+
+													"<button class='btn btn-sm btn-outline-success' onclick=\"publish("+i+")\">Publish</button>"+"\n"+
+													"<button class='btn btn-sm btn-outline-danger' onclick=\"mydelete("+i+")\">Delete</button></div></td>"+"\n"+
+												  "</tr>"+"\n";
+								}
 								  
 								var element = document.getElementsByClassName("spinner-border")[0];
 								element.parentNode.removeChild(element);
@@ -205,15 +202,16 @@ var ref = firebase.database().ref("waitinglist");
 								'</table>';
 								});
 					
-  		} else {
-  		console.log("not logged in");
-		
-		var element = document.getElementsByClassName("spinner-border")[0];
-								element.parentNode.removeChild(element);
-		document.getElementById("tableresponsive").innerHTML = 
-		'<h1>Sorry, not allowed to see this content.</h1>'+'\n'+
-		'<a href="index.html" class="btn text-white btn-link btn-secondary btn-block">Torna alla home</a>'+'\n'+
-		'';
+	} else {
+								console.log("not logged in");
+								
+								var element = document.getElementsByClassName("spinner-border")[0];
+														element.parentNode.removeChild(element);
+								document.getElementById("tableresponsive").innerHTML = 
+								'<h1>Sorry, not allowed to see this content.</h1>'+'\n'+
+								'<a href="index.html" class="btn text-white btn-link btn-secondary btn-block">Torna alla home</a>'+'\n'+
+								'';
+	};
   	
   });
   

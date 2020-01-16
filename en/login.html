@@ -9,15 +9,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
 <link rel="stylesheet" href="./src/css/common.css">
 
-</style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
-<div class="navbar-brand mt-auto">
-<a href="index.html">
-	<div class="d-inline-block"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
+<nav class="navbar navbar-expand-lg fixed-top bg-light shadow rounded "> 
+<div>
+<a class="navbar-brand" href="index.html">
+	<div class="d-inline-block align-middle"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
 </a>
-<a class="navbar-brand" href="index.html"></a>
+<a class="navbar-brand" href="index.html">Fogli Di Carta</a>
 </div>
 <button class="navbar-toggler" type="button" 
 data-toggle="collapse" data-target="#theNavbar" 
@@ -27,31 +26,32 @@ aria-label="Toggle navigation">
 </button>
 <div id="theNavbar" class="navbar-collapse collapse ">
 <ul class="navbar-nav ml-auto">
-<li><a href="theProject.html" class="nav-link text-center">Il progetto</a></li>
-<li><a href="allStories.html" class="nav-link text-center">Le storie</a></li>
-<li><a class="nav-link text-center">Condividi la tua storia</a></li>
-<li><a href="contacts.html" class="nav-link text-center">Contatti</a></li>
-<li><a href="en\index.html" class="nav-link text-center">English version</a></li>
+<li><a href="theProject.html"  class="nav-link text-center">The project</a></li>
+<li><a href="allStories.html" class="nav-link text-center">The stories</a></li>
+<li><a href="newStory.html" class="nav-link text-center">Share your story</a></li>
+<li><a href="contacts.html" class="nav-link text-center">Contacts</a></li>
+<li><a href="..\index.html" class="nav-link text-center">Italian version</a></li>
 
 </ul>
 </div>
 </nav>
 <main class="container my-5">
-	<h2 class="text-center my-5">Racconta qui la tua storia</h2>
-	<div id="all" class="form-group">
-<label>Nome</label>
-<input id="inputAutore" class="form-control  bg-transparent" placeholder="Tutela la tua privacy, scrivi un nome di fantasia." required><br>
-<label>Email</label>
-<input id="inputEmail" class="form-control  bg-transparent" placeholder="Inserire un email (facoltativa)"><br>
-<label>Testo</label>
-<textarea id="inputStoria"  class="form-control  bg-transparent" rows="4" cols="50" placeholder="Inserire qui il testo della storia" required></textarea><br>
-<input type="checkbox" checked=true onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" name="terms"> 
-<label>  Inviando la tua storia, accetti i <a href="termini.html" target="X">termini e condizioni del sito.</a></label>
-
-
-
-<button class="my-5 btn btn-secondary btn-block" onclick="send()">Invia</button>
-</div></main>
+<form>
+  <div  id="signin" class="form-group">
+    <h1 class="text-center">Please login only as Admin</h1>
+  </div>
+  <div class="form-group">
+    <input id="inputEmail" class="form-control bg-transparent"  type="email" name="" value="" placeholder="email">
+  </div>
+  <div class="form-group">
+    <input id="inputPassword"class="form-control bg-transparent"  type="password" name="" value="" placeholder="password">
+  </div>
+  <div class="form-group">
+    <button id="loginButton" class="btn btn-secondary btn-block" type="button" name="button">login</button>
+    <button id="logoutButton" class="btn btn-secondary hide btn-block" type="button" name="button">logout</button>
+</div>
+</form>
+</main>
 <section class="">
 <footer class="border-top pt-4">
 <div class="container">
@@ -74,14 +74,15 @@ aria-label="Toggle navigation">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Home</a></li>
-				<li><a href="theProject.html">Il progetto</a></li>
-				<li><a href="allStories.html">Le storie</a></li>
-				<li><a href="newStory.html">Condividi la tua storia</a></li>
-				<li><a href="contacts.html">Contatti</a></li>
+				<li><a href="theProject.html">The project</a></li>
+				<li><a href="allStories.html">The stories</a></li>
+				<li><a href="newStory.html">Share your story</a></li>
+				<li><a href="contacts.html">Contacts</a></li>
 				<li><a href="termscond.html">Terms and conditions</a></li>
 				<li><a href="privacy.html">Privacy policy</a></li>
 				<li><a href="admin.html">Admin</a></li>
 				<li><a href="login.html">Login</a></li>
+				<li><a href="../index.html">Italian version</a></li>
 			</ul>
 		</div> 
 	</div>
@@ -99,7 +100,6 @@ aria-label="Toggle navigation">
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
 
 <script>
-
    // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
@@ -112,48 +112,50 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
   
-  var data = new Date();
-  
-  const inputStoria = document.getElementById("inputStoria");
-  const inputAutore = document.getElementById("inputAutore");
+  // UI elements declarations
   const inputEmail = document.getElementById("inputEmail");
-  
- 
-  function send() {
-  var path = data.getMonth()+1+inputAutore.value +"_"+data.getTime();
-	  firebase.database().ref('waitinglist/'+path).set({
-		autore: inputAutore.value,
-		storia: inputStoria.value,
-		email: inputEmail.value,
-	  });
-	  setTimeout(function(){ 
-	  document.getElementById("all").innerHTML =
-	  "<h2 class=\"mt-5\">Grazie "+inputAutore.value+" per aver inviato la tua storia!</h2>\n"+
-	  "<p>Verrà pubblicata al più presto.</p>\n"+
-	  "<button class=\"my-5 btn btn-secondary btn-block\" onclick=\"home()\">Torna alla home</button>\n"
-	  }, 3000);
-	}
-	function home() {
-	window.location.replace("index.html");
-	}
+  const inputPassword = document.getElementById("inputPassword");
+  const loginButton = document.getElementById("loginButton");
+  const logoutButton = document.getElementById("logoutButton");
+  const signInButton = document.getElementById("signInButton");
+  const signIn = document.getElementById("signin");
 
-	 var mySwiper = new Swiper (
-	'.swiper-container', {
-	direction: 'horizontal',
-	loop: true, 
-	pagination: {	
-		el: '.swiper-pagination',
-		dynamicBullets: true,
-	}, 
-	navigation: {
-		nextEl: '.swiper-button-next', 
-		prevEl: '.swiper-button-prev',
-		}, scrollbar: {
-			el: '.swiper-scrollbar',
-		},
-	});
-	</script>
+  // logged user auth declaration
+  const auth = firebase.auth();
+
+  loginButton.addEventListener("click", e => {
+      const email = inputEmail.value;
+      const pass = inputPassword.value;
+      const promise = auth.signInWithEmailAndPassword(email,pass);
+      promise.catch(e => console.log("err"));
+  });
+
+  logoutButton.addEventListener("click", e => {
+  firebase.auth().signOut();
+  });
+  
+ firebase.auth().onAuthStateChanged(firebaseUser => {
+  	if (firebaseUser) {
+  		console.log(firebaseUser);
+  		loginButton.classList.add("hide");
+  		logoutButton.classList.remove("hide");
+  		inputEmail.classList.add("d-none");
+  		inputPassword.classList.add("d-none");
+  		signIn.classList.add("d-none");
+  		} else {
+  		console.log("not logged in");
+  		loginButton.classList.remove("hide");
+  		logoutButton.classList.add("hide");
+  		inputEmail.classList.remove("d-none");
+  		inputPassword.classList.remove("d-none");
+  		signIn.classList.remove("d-none");
+  	}
+
+  });
+ 
+
+  
+</script>
 </body>
 </html>

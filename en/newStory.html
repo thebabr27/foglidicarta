@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
 <link rel="stylesheet" href="./src/css/common.css">
 
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
@@ -26,27 +27,31 @@ aria-label="Toggle navigation">
 </button>
 <div id="theNavbar" class="navbar-collapse collapse ">
 <ul class="navbar-nav ml-auto">
-<li><a href="theProject.html" class="nav-link text-center">Il progetto</a></li>
-<li><a href="allStories.html" class="nav-link text-center">Le storie</a></li>
-<li><a href="newStory.html" class="nav-link text-center">Condividi la tua storia</a></li>
-<li><a class="nav-link text-center">Contatti</a></li>
-<li><a href="en\index.html" class="nav-link text-center">English version</a></li>
+<li><a href="theProject.html"  class="nav-link text-center">The project</a></li>
+<li><a href="allStories.html" class="nav-link text-center">The stories</a></li>
+<li><a class="nav-link text-center">Share your story</a></li>
+<li><a href="contacts.html" class="nav-link text-center">Contacts</a></li>
+<li><a href="..\index.html" class="nav-link text-center">Italian version</a></li>
 
 </ul>
 </div>
 </nav>
-<main class="container mb-5">
-<h1 class="text-center mt-5 mb-2">Contatti</h1>
-<br>
-<p>Email: progetto.foglidicarta@gmail.com</p>
-<p>Phone: 01234567</p>
-<br>
-<h5>Social: </h5>
-<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span> Facebook </a>
-<br>
-<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span> Instagram </a>
-<br>
-</main>
+<main class="container my-5">
+	<h2 class="text-center my-5">Racconta qui la tua storia</h2>
+	<div id="all" class="form-group">
+<label>Nome</label>
+<input id="inputAutore" class="form-control  bg-transparent" placeholder="Tutela la tua privacy, scrivi un nome di fantasia." required><br>
+<label>Email</label>
+<input id="inputEmail" class="form-control  bg-transparent" placeholder="Inserire un email (facoltativa)"><br>
+<label>Testo</label>
+<textarea id="inputStoria"  class="form-control  bg-transparent" rows="4" cols="50" placeholder="Inserire qui il testo della storia" required></textarea><br>
+<input type="checkbox" checked=true onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" name="terms"> 
+<label>  Inviando la tua storia, accetti i <a href="termini.html" target="X">termini e condizioni del sito.</a></label>
+
+
+
+<button class="my-5 btn btn-secondary btn-block" onclick="send()">Invia</button>
+</div></main>
 <section class="">
 <footer class="border-top pt-4">
 <div class="container">
@@ -69,14 +74,15 @@ aria-label="Toggle navigation">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Home</a></li>
-				<li><a href="theProject.html">Il progetto</a></li>
-				<li><a href="allStories.html">Le storie</a></li>
-				<li><a href="newStory.html">Condividi la tua storia</a></li>
-				<li><a href="contacts.html">Contatti</a></li>
+				<li><a href="theProject.html">The project</a></li>
+				<li><a href="allStories.html">The stories</a></li>
+				<li><a href="newStory.html">Share your story</a></li>
+				<li><a href="contacts.html">Contacts</a></li>
 				<li><a href="termscond.html">Terms and conditions</a></li>
 				<li><a href="privacy.html">Privacy policy</a></li>
 				<li><a href="admin.html">Admin</a></li>
 				<li><a href="login.html">Login</a></li>
+				<li><a href="../index.html">Italian version</a></li>
 			</ul>
 		</div> 
 	</div>
@@ -93,5 +99,62 @@ aria-label="Toggle navigation">
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
 
+<script>
+
+   // Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
+    authDomain: "foglidicarta-faccf.firebaseapp.com",
+    databaseURL: "https://foglidicarta-faccf.firebaseio.com",
+    projectId: "foglidicarta-faccf",
+    storageBucket: "foglidicarta-faccf.appspot.com",
+    messagingSenderId: "211559477338",
+    appId: "1:211559477338:web:3a3262a4cdaf433cd0e863"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  
+  var data = new Date();
+  
+  const inputStoria = document.getElementById("inputStoria");
+  const inputAutore = document.getElementById("inputAutore");
+  const inputEmail = document.getElementById("inputEmail");
+  
+ 
+  function send() {
+  var path = data.getMonth()+1+inputAutore.value +"_"+data.getTime();
+	  firebase.database().ref('waitinglist/'+path).set({
+		autore: inputAutore.value,
+		storia: inputStoria.value,
+		email: inputEmail.value,
+	  });
+	  setTimeout(function(){ 
+	  document.getElementById("all").innerHTML =
+	  "<h2 class=\"mt-5\">Grazie "+inputAutore.value+" per aver inviato la tua storia!</h2>\n"+
+	  "<p>Verrà pubblicata al più presto.</p>\n"+
+	  "<button class=\"my-5 btn btn-secondary btn-block\" onclick=\"home()\">Torna alla home</button>\n"
+	  }, 3000);
+	}
+	function home() {
+	window.location.replace("index.html");
+	}
+
+	 var mySwiper = new Swiper (
+	'.swiper-container', {
+	direction: 'horizontal',
+	loop: true, 
+	pagination: {	
+		el: '.swiper-pagination',
+		dynamicBullets: true,
+	}, 
+	navigation: {
+		nextEl: '.swiper-button-next', 
+		prevEl: '.swiper-button-prev',
+		}, scrollbar: {
+			el: '.swiper-scrollbar',
+		},
+	});
+	</script>
 </body>
 </html>

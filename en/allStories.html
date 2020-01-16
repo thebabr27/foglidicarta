@@ -8,8 +8,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
 <link rel="stylesheet" href="./src/css/common.css">
-
-</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
@@ -27,30 +25,26 @@ aria-label="Toggle navigation">
 </button>
 <div id="theNavbar" class="navbar-collapse collapse ">
 <ul class="navbar-nav ml-auto">
-<li><a href="theProject.html" class="nav-link text-center">Il progetto</a></li>
-<li><a href="allStories.html" class="nav-link text-center">Le storie</a></li>
-<li><a class="nav-link text-center">Condividi la tua storia</a></li>
-<li><a href="contacts.html" class="nav-link text-center">Contatti</a></li>
-<li><a href="en\index.html" class="nav-link text-center">English version</a></li>
+<li><a href="theProject.html"  class="nav-link text-center">The project</a></li>
+<li><a class="nav-link text-center">The stories</a></li>
+<li><a href="newStory.html" class="nav-link text-center">Share your story</a></li>
+<li><a href="contacts.html" class="nav-link text-center">Contacts</a></li>
+<li><a href="..\index.html" class="nav-link text-center">Italian version</a></li>
 
 </ul>
 </div>
 </nav>
-<main class="container my-5">
-	<h2 class="text-center my-5">Racconta qui la tua storia</h2>
-	<div id="all" class="form-group">
-<label>Nome</label>
-<input id="inputAutore" class="form-control  bg-transparent" placeholder="Tutela la tua privacy, scrivi un nome di fantasia." required><br>
-<label>Email</label>
-<input id="inputEmail" class="form-control  bg-transparent" placeholder="Inserire un email (facoltativa)"><br>
-<label>Testo</label>
-<textarea id="inputStoria"  class="form-control  bg-transparent" rows="4" cols="50" placeholder="Inserire qui il testo della storia" required></textarea><br>
-<input type="checkbox" checked=true onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" name="terms"> 
-<label>  Inviando la tua storia, accetti i <a href="termini.html" target="X">termini e condizioni del sito.</a></label>
-
-
-
-<button class="my-5 btn btn-secondary btn-block" onclick="send()">Invia</button>
+<main class="container">
+<h1 class="text-center mt-5 mb-2">The stories</h1>
+	<div id="all" class="swiper-container text-center">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+		<br>	<br>	<br>	<br>	
+				<div class="spinner-border mt-5" role="status">
+				  <span class="sr-only">Loading...</span>
+				</div>
+			</div>
+		</div>
 </div></main>
 <section class="">
 <footer class="border-top pt-4">
@@ -74,14 +68,15 @@ aria-label="Toggle navigation">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Home</a></li>
-				<li><a href="theProject.html">Il progetto</a></li>
-				<li><a href="allStories.html">Le storie</a></li>
-				<li><a href="newStory.html">Condividi la tua storia</a></li>
-				<li><a href="contacts.html">Contatti</a></li>
+				<li><a href="theProject.html">The project</a></li>
+				<li><a href="allStories.html">The stories</a></li>
+				<li><a href="newStory.html">Share your story</a></li>
+				<li><a href="contacts.html">Contacts</a></li>
 				<li><a href="termscond.html">Terms and conditions</a></li>
 				<li><a href="privacy.html">Privacy policy</a></li>
 				<li><a href="admin.html">Admin</a></li>
 				<li><a href="login.html">Login</a></li>
+				<li><a href="../index.html">Italian version</a></li>
 			</ul>
 		</div> 
 	</div>
@@ -112,33 +107,58 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+  
 
-  
-  var data = new Date();
-  
-  const inputStoria = document.getElementById("inputStoria");
-  const inputAutore = document.getElementById("inputAutore");
-  const inputEmail = document.getElementById("inputEmail");
-  
- 
-  function send() {
-  var path = data.getMonth()+1+inputAutore.value +"_"+data.getTime();
-	  firebase.database().ref('waitinglist/'+path).set({
-		autore: inputAutore.value,
-		storia: inputStoria.value,
-		email: inputEmail.value,
-	  });
-	  setTimeout(function(){ 
-	  document.getElementById("all").innerHTML =
-	  "<h2 class=\"mt-5\">Grazie "+inputAutore.value+" per aver inviato la tua storia!</h2>\n"+
-	  "<p>Verrà pubblicata al più presto.</p>\n"+
-	  "<button class=\"my-5 btn btn-secondary btn-block\" onclick=\"home()\">Torna alla home</button>\n"
-	  }, 3000);
-	}
-	function home() {
-	window.location.replace("index.html");
-	}
+var ref = firebase.database().ref("published");
+ref.once("value")
+  .then(function(snapshot) {
+  try {
+					var nstories = Object.keys(snapshot.val());
+					//console.log("intero oggetto " + nstories);
+					//console.log("n. elementi " + nstories.length);
+					//var first = nstories[0];
+					//console.log("path primo elemento " + first);
+					//var titolo = snapshot.child(first).val().titolo;
+					//var storia = snapshot.child(first).val().storia;
+					//console.log("contenuto "+first+" "+titolo + "\n" + storia);
+					var tit = []; var aut = []; var par = []; var storia = "";
+					var i; var autore = "";
+					for (i = 0; i< nstories.length; i++) {
+						autore = snapshot.child(nstories[i]).val().autore;
+						storia = snapshot.child(nstories[i]).val().storia;
+						aut.push(autore);
+						par.push(storia);
+						
+					}
+					var story = "";
+					for (i in aut)  {
+					if (aut[i]!=undefined) {
+					if (i <= 0) {pt = " class=\"pt-5\"";}
+						story +=
+						"<div class=\"swiper-slide\">"+"\n"+
+						"<p class='text-left'>"+par[i]+"</p>"+"\n"+
+						"<h4 class='my-5'>"+aut[i]+"</h4>"+"\n"+
+						"</div>"+"\n";
+						}
+					}
+					var all = 
+					
+					"<div class=\"mt-5 swiper-wrapper\">"+"\n"+
+					story+"\n"+
+					"</div>"+"\n"+
+					"<div class=\"swiper-pagination\"></div>"+"\n"+
+					"<div class=\"swiper-button-prev swiper-button-black text-black-50\"></div>"+"\n"+
+					"<div class=\"swiper-button-next swiper-button-black text-black-50\"></div>"+"\n"+
 
+					"";
+					document.getElementById("all").innerHTML = all;
+		} catch(err) {
+			document.getElementById("all").innerHTML = "<div class ='my-5'>"+"\n"+
+			"<h2>Nessuna storia ancora pubblicata</h2>"+"\n"+
+			'<a href="newStory.html"  class="my-5 btn btn-secondary btn-lg btn-block">Racconta la tua storia</a>'+"\n"+
+			"</div>\n";
+		}
+					
 	 var mySwiper = new Swiper (
 	'.swiper-container', {
 	direction: 'horizontal',
@@ -154,6 +174,7 @@ var firebaseConfig = {
 			el: '.swiper-scrollbar',
 		},
 	});
+  });
 	</script>
 </body>
 </html>

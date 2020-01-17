@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Courier+Prime&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-* {font-family: 'Courier Prime', monospace;}
+* {font-family: 'Open Sans', sans-serif;}
 
 a {color: black;transition:.2s;}
 

@@ -136,7 +136,6 @@ var firebaseConfig = {
   
  firebase.auth().onAuthStateChanged(firebaseUser => {
   	if (firebaseUser) {
-  		console.log(firebaseUser);
   		loginButton.classList.add("hide");
   		logoutButton.classList.remove("hide");
   		inputEmail.classList.add("d-none");

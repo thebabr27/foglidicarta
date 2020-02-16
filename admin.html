@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="./src/css/common.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg fixed-top shadow bg-light "> 
-<div>
-<a class="navbar-brand" href="index.html">
-	<div class="d-inline-block align-middle"><img id="navbarlogo" src="./src/img/logo.jpg" width="30" height="30" alt=""></div>
-</a>
-<a class="navbar-brand" href="index.html">Fogli Di Carta</a>
+<nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
+<div class="navbar-brand mt-auto">
+	<a href="index.html">
+		<div class="d-inline-block"><img id="navbarlogo" src="./src/img/logo.png" width="30" height="30" alt=""></div>
+	</a>
+	Fogli di Carta
 </div>
 <button class="navbar-toggler" type="button" 
 data-toggle="collapse" data-target="#theNavbar" 
@@ -25,22 +25,23 @@ aria-label="Toggle navigation">
 </button>
 <div id="theNavbar" class="navbar-collapse collapse ">
 <ul class="navbar-nav ml-auto">
-<li><a href="theProject.html" class="nav-link text-center">Il progetto</a></li>
-<li><a href="allStories.html" class="nav-link text-center">Le storie</a></li>
-<li><a href="newStory.html" class="nav-link text-center">Condividi la tua storia</a></li>
-<li><a href="contacts.html" class="nav-link text-center">Contatti</a></li>
+<li><a href="Il_progetto.html" class="nav-link text-center">Il progetto</a></li>
+<li><a href="Le_storie.html" class="nav-link text-center">Le storie</a></li>
+<li><a href="Racconta_una_storia.html" class="nav-link text-center">Condividi la tua storia</a></li>
+<li><a href="Contatti.html" class="nav-link text-center">Contatti</a></li>
 <li><a href="en\index.html" class="nav-link text-center">English version</a></li>
 
 </ul>
 </div>
 </nav>
-<main class="container my-5">
+<main class="container-fluid my-5">
 
 <div id="edit" class="d-none">
 <h4 class="my-3">Modifica in corso della storia n.<span id="storyNumber"></span></h4>
 <textarea id="editarea" class=" form-control "></textarea>
 <button class="my-4 btn btn-secondary btn-block" onclick="changes()">Save changes</button>
 </div>
+<div id="all">
 <div id="tableresponsive" class="table-responsive text-center">
 <table id="table" class="table table-striped table-sm">
 	<div class="spinner-border mt-5" role="status">
@@ -55,6 +56,7 @@ aria-label="Toggle navigation">
 	  <span class="sr-only">Loading...</span>
 	</div>
 </table>
+</div>
 </div>
 </main>
 <section class="">
@@ -79,11 +81,11 @@ aria-label="Toggle navigation">
 		<div class="col-6 col-md-4">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Home</a></li>
-				<li><a href="theProject.html">Il progetto</a></li>
-				<li><a href="allStories.html">Le storie</a></li>
-				<li><a href="newStory.html">Condividi la tua storia</a></li>
-				<li><a href="contacts.html">Contatti</a></li>
-				<li><a href="termscond.html">Terms and conditions</a></li>
+				<li><a href="Il_progetto.html">Il progetto</a></li>
+				<li><a href="Le_storie.html">Le storie</a></li>
+				<li><a href="Racconta_una_storia.html">Condividi la tua storia</a></li>
+				<li><a href="Contatti.html">Contatti</a></li>
+				<li><a href="Termini_e_condizioni.html">Terms and conditions</a></li>
 				<li><a href="privacy.html">Privacy policy</a></li>
 				<li><a href="admin.html">Admin</a></li>
 				<li><a href="login.html">Login</a></li>
@@ -128,14 +130,13 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
   	if (firebaseUser) {
 								readPublished("published");
 								readDbFolder("waitinglist");
-					
 	} else {
 								console.log("not logged in");
 								
 								var element = document.getElementsByClassName("spinner-border")[0];
 														element.parentNode.removeChild(element);
-								document.getElementById("tableresponsive").innerHTML = 
-								'<h1>Sorry, not allowed to see this content.</h1>'+'\n'+
+								document.getElementById("all").innerHTML = 
+								'<h1 class="text-center">Sorry, not allowed to see this content.</h1>'+'\n'+
 								'<a href="index.html" class="btn text-white btn-link btn-secondary btn-block">Torna alla home</a>'+'\n'+
 								'';
 	};
@@ -282,6 +283,8 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 		email: mail[ind],
 	  });
 	firebase.database().ref('published/'+nstories[ind]).remove();
+	ref = firebase.database().ref("public");
+	firebase.database().ref('public/'+nstories[ind]).remove();
 	location.reload();
 	});
   }
@@ -338,12 +341,17 @@ ref.once("value").then(function(snapshot) {
 			mail.push(email);
 		}
 		document.getElementById(ind).innerHTML = "";
-		
 		firebase.database().ref('published/'+nstories[ind]).set({
 		autore: aut[ind],
 		storia: par[ind],
-		email: mail[ind],
-	  });
+		email: mail[ind]
+	  });	
+		document.getElementById(ind).innerHTML = "";
+		firebase.database().ref('public/'+nstories[ind]).set({
+		autore: aut[ind],
+		storia: par[ind],
+		email: ""
+	  });		
 	firebase.database().ref('waitinglist/'+nstories[ind]).remove();
 	location.reload();
 	});

@@ -9,8 +9,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
 <link rel="stylesheet" href="./src/css/common.css">
 
+</style>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
 <div class="navbar-brand mt-auto">
 	<a href="index.html">
@@ -26,32 +28,49 @@ aria-label="Toggle navigation">
 </button>
 <div id="theNavbar" class="navbar-collapse collapse ">
 <ul class="navbar-nav ml-auto">
-<li><a href="Il_progetto.html"  class="nav-link text-center">Il progetto</a></li>
-<li><a href="Le_storie.html" class="nav-link text-center">Le storie</a></li>
-<li><a href="Racconta_una_storia.html" class="nav-link text-center">Condividi la tua storia</a></li>
+<li><a href="Il_progetto.html" class="nav-link text-center">Il progetto</a></li>
+<li><a href="allStories.html" class="nav-link text-center">Le storie</a></li>
+<li><a class="nav-link text-center">Condividi la tua storia</a></li>
 <li><a href="Contatti.html" class="nav-link text-center">Contatti</a></li>
 <li><a href="en\index.html" class="nav-link text-center">English version</a></li>
-
 </ul>
 </div>
-</nav>
-<main class="container my-5">
-<form>
-  <div  id="signin" class="form-group">
-    <h1 class="text-center">Please login only as Admin</h1>
-  </div>
-  <div class="form-group">
-    <input id="inputEmail" class="form-control bg-transparent"  type="email" name="" value="" placeholder="email">
-  </div>
-  <div class="form-group">
-    <input id="inputPassword"class="form-control bg-transparent"  type="password" name="" value="" placeholder="password">
-  </div>
-  <div class="form-group">
-    <button id="loginButton" class="btn btn-secondary btn-block" type="button" name="button">login</button>
-    <button id="logoutButton" class="btn btn-secondary hide btn-block" type="button" name="button">logout</button>
-</div>
-</form>
-</main>
+</nav><main class=" container my-5">
+<h1 class=" text-center mt-5 mb-2">Racconta qui la tua storia</h1>
+<div class="row "><div class=" col-12 order-2">
+<br>
+</div><div class=" col-12 order-3">
+<div class=" form-group">
+<label>Nome
+</label><input id="inputAutore" class=" form-control  bg-transparent" placeholder="Tutela la tua privacy, scrivi un nome di fantasia." required="">
+<br>
+</div></div><div class=" col-12 order-4">
+<div class=" form-group">
+<label>Email
+</label><input id="inputEmail" class=" form-control  bg-transparent" placeholder="Inserire un email (facoltativa)">
+<br>
+</div></div><div class=" col-12 order-6 col-md-6">
+<div class=" form-group">
+<label>Testo
+</label><textarea id="inputStoria" class=" form-control  bg-transparent" rows="7" cols="50" placeholder="Inserire qui il testo della storia" required=""></textarea><br>
+</div></div><div class=" col-12 order-5 order-md-6 col-md-6">
+<div>
+<h6>Di seguito alcuni spunti di riflessione per aiutarti nella stesura del tuo racconto.
+</h6><ul>
+<li>lungo il sentiero
+</li><li>c'è un bivio, forse un inganno
+</li><li>nel buio si rompono gli equilibri
+</li><li>da nuovi incontri... il cammino riprende
+</li><li>arduo è percorrere la salita
+</li><li>dalla cima... molti orizzonti
+</li></ul></div></div><div class=" col-12 order-7">
+<div class=" form-group">
+<div class=" form-check">
+<input class=" form-check-input" type="checkbox" checked="">
+<div>
+Inviando la tua storia accetti <a href="ciao">termini e condizioni del sito.
+</a></div></div><button class=" my-5 btn btn-secondary btn-block" onclick="send()">Invia
+</button></div></div></div></main>
 <section class="">
 <footer class="border-top pt-4">
 <div class="container">
@@ -75,8 +94,8 @@ aria-label="Toggle navigation">
 			<ul class="list-unstyled text-small">
 				<li><a href="index.html">Home</a></li>
 				<li><a href="Il_progetto.html">Il progetto</a></li>
-				<li><a href="Le_storie.html">Le storie</a></li>
-				<li><a href="Racconta_una_storia.html">Condividi la tua storia</a></li>
+				<li><a href="allStories.html">Le storie</a></li>
+				<li><a href="newStory.html">Condividi la tua storia</a></li>
 				<li><a href="Contatti.html">Contatti</a></li>
 				<li><a href="Termini_e_condizioni.html">Terms and conditions</a></li>
 				<li><a href="privacy.html">Privacy policy</a></li>
@@ -99,6 +118,7 @@ aria-label="Toggle navigation">
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
 
 <script>
+
    // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
@@ -111,49 +131,52 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
+
   
-  // UI elements declarations
+  var data = new Date();
+  
+  const inputStoria = document.getElementById("inputStoria");
+  const inputAutore = document.getElementById("inputAutore");
   const inputEmail = document.getElementById("inputEmail");
-  const inputPassword = document.getElementById("inputPassword");
-  const loginButton = document.getElementById("loginButton");
-  const logoutButton = document.getElementById("logoutButton");
-  const signInButton = document.getElementById("signInButton");
-  const signIn = document.getElementById("signin");
-
-  // logged user auth declaration
-  const auth = firebase.auth();
-
-  loginButton.addEventListener("click", e => {
-      const email = inputEmail.value;
-      const pass = inputPassword.value;
-      const promise = auth.signInWithEmailAndPassword(email,pass);
-      promise.catch(e => console.log("err"));
-  });
-
-  logoutButton.addEventListener("click", e => {
-  firebase.auth().signOut();
-  });
   
- firebase.auth().onAuthStateChanged(firebaseUser => {
-  	if (firebaseUser) {
-  		loginButton.classList.add("hide");
-  		logoutButton.classList.remove("hide");
-  		inputEmail.classList.add("d-none");
-  		inputPassword.classList.add("d-none");
-  		signIn.classList.add("d-none");
-  		} else {
-  		console.log("not logged in");
-  		loginButton.classList.remove("hide");
-  		logoutButton.classList.add("hide");
-  		inputEmail.classList.remove("d-none");
-  		inputPassword.classList.remove("d-none");
-  		signIn.classList.remove("d-none");
-  	}
-
-  });
  
+  function send() {
+  document.getElementById('send').innerHTML = '<text>Invio in corso</text>'+
+	'<div class="mx-2 spinner-border spinner-border-sm" role="status">'+
+	'<span class="sr-only">Loading...</span>'+
+	'</div>';
+  var path = data.getMonth()+1+inputAutore.value +"_"+data.getTime();
+	  firebase.database().ref('waitinglist/'+path).set({
+		autore: inputAutore.value,
+		storia: inputStoria.value,
+		email: inputEmail.value,
+	  });
+	  setTimeout(function(){ 
+	  document.getElementById("all").innerHTML =
+	  "<h2 class=\'mt-5 text-center\'>Grazie "+inputAutore.value+" per aver inviato la tua storia!</h2>\n"+
+	  "<p class=\'mt-5 text-center\'>Verrà pubblicata al più presto.</p>\n"+
+	  "<button class=\"my-5 btn btn-secondary btn-block\" onclick=\"home()\">Torna alla home</button>\n"
+	  }, 3000);
+	}
+	function home() {
+	window.location.replace("index.html");
+	}
 
-  
-</script>
+	 var mySwiper = new Swiper (
+	'.swiper-container', {
+	direction: 'horizontal',
+	loop: true, 
+	pagination: {	
+		el: '.swiper-pagination',
+		dynamicBullets: true,
+	}, 
+	navigation: {
+		nextEl: '.swiper-button-next', 
+		prevEl: '.swiper-button-prev',
+		}, scrollbar: {
+			el: '.swiper-scrollbar',
+		},
+	});
+	</script>
 </body>
 </html>

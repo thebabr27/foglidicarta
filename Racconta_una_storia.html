@@ -35,7 +35,7 @@ aria-label="Toggle navigation">
 <li><a href="en\index.html" class="nav-link text-center">English version</a></li>
 </ul>
 </div>
-</nav><main class=" container my-5">
+</nav><main id="all" class=" container my-5">
 <h1 class=" text-center mt-5 mb-2">Racconta qui la tua storia</h1>
 <div class="row "><div class=" col-12 order-2">
 <br>
@@ -152,10 +152,12 @@ var firebaseConfig = {
 		email: inputEmail.value,
 	  });
 	  setTimeout(function(){ 
-	  document.getElementById("all").innerHTML =
+	  document.getElementById("all").innerHTML = 
+	  '<div class="row"><div class="col-12 text-center">\n'+
 	  "<h2 class=\'mt-5 text-center\'>Grazie "+inputAutore.value+" per aver inviato la tua storia!</h2>\n"+
 	  "<p class=\'mt-5 text-center\'>Verrà pubblicata al più presto.</p>\n"+
-	  "<button class=\"my-5 btn btn-secondary btn-block\" onclick=\"home()\">Torna alla home</button>\n"
+	  "<button class=\"my-5 btn btn-secondary btn-block\" onclick=\"home()\">Torna alla home</button>\n"+
+	  '</div></div>'		  
 	  }, 3000);
 	}
 	function home() {

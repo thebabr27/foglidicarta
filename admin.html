@@ -1,6 +1,9 @@
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="it"><head>
 <meta charset="utf-8">
+<meta name="author" content="theBabr">
+<meta name="theme-color" content="#F6F3E2">
+<title>Admin</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
@@ -256,7 +259,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 		ref.once("value").then(function(snapshot) {
 		var nstories = Object.keys(snapshot.val());
 		firebase.database().ref('waitinglist/'+nstories[ind]).remove();
-		location.reload();
+	setTimeout(()=>location.reload(),300);
 		});
 	}
 	
@@ -285,7 +288,7 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 	firebase.database().ref('published/'+nstories[ind]).remove();
 	ref = firebase.database().ref("public");
 	firebase.database().ref('public/'+nstories[ind]).remove();
-	location.reload();
+	setTimeout(()=>location.reload(),300);
 	});
   }
   
@@ -321,7 +324,7 @@ ref.once("value").then(function(snapshot) {
 			storia: modifiedstory,
 			email: mail[ind],
 		});
-		location.reload();
+	setTimeout(()=>location.reload(),300);
 		});
   }
   
@@ -353,7 +356,7 @@ ref.once("value").then(function(snapshot) {
 		email: ""
 	  });		
 	firebase.database().ref('waitinglist/'+nstories[ind]).remove();
-	location.reload();
+	setTimeout(()=>location.reload(),300);
 	});
   };
 

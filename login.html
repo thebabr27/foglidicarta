@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
 <link rel="stylesheet" href="./src/css/common.css">
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
@@ -26,7 +27,7 @@ aria-label="Toggle navigation">
 <div id="theNavbar" class="navbar-collapse collapse ">
 <ul class="navbar-nav ml-auto">
 <li><a href="Il_progetto.html"  class="nav-link text-center">Il progetto</a></li>
-<li><a class="nav-link text-center">Le storie</a></li>
+<li><a href="Le_storie.html" class="nav-link text-center">Le storie</a></li>
 <li><a href="Racconta_una_storia.html" class="nav-link text-center">Condividi la tua storia</a></li>
 <li><a href="Contatti.html" class="nav-link text-center">Contatti</a></li>
 <li><a href="en\index.html" class="nav-link text-center">English version</a></li>
@@ -34,20 +35,25 @@ aria-label="Toggle navigation">
 </ul>
 </div>
 </nav>
-<main class="container">
-<h1 class="text-center my-5">Le storie</h1>
-	<div id="all" class="swiper-container text-center">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide">
-		<br>	<br>	<br>	<br>	
-				<div class="spinner-border mt-5" role="status">
-				  <span class="sr-only">Loading...</span>
-				</div>
-			</div>
-		</div>
-</div></main>
+<main class="container my-5">
+<form>
+  <div  id="signin" class="form-group">
+    <h1 class="text-center">Please login only as Admin</h1>
+  </div>
+  <div class="form-group">
+    <input id="inputEmail" class="form-control bg-transparent"  type="email" name="" value="" placeholder="email">
+  </div>
+  <div class="form-group">
+    <input id="inputPassword"class="form-control bg-transparent"  type="password" name="" value="" placeholder="password">
+  </div>
+  <div class="form-group">
+    <button id="loginButton" class="btn btn-secondary btn-block" type="button" name="button">login</button>
+    <button id="logoutButton" class="btn btn-secondary hide btn-block" type="button" name="button">logout</button>
+</div>
+</form>
+</main>
 <section class="">
-<footer class="border-top pt-4 mt-4">
+<footer class="border-top pt-4">
 <div class="container">
 	<div class="row">
 		<div class="col-6 col-md-4">
@@ -93,7 +99,6 @@ aria-label="Toggle navigation">
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
 
 <script>
-
    // Your web app's Firebase configuration
 var firebaseConfig = {
     apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
@@ -107,76 +112,48 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   
+  // UI elements declarations
+  const inputEmail = document.getElementById("inputEmail");
+  const inputPassword = document.getElementById("inputPassword");
+  const loginButton = document.getElementById("loginButton");
+  const logoutButton = document.getElementById("logoutButton");
+  const signInButton = document.getElementById("signInButton");
+  const signIn = document.getElementById("signin");
 
-var ref = firebase.database().ref("public");
-ref.once("value")
-  .then(function(snapshot) {
-  try {
-					var nstories = Object.keys(snapshot.val());
-					//console.log("intero oggetto " + nstories);
-					//console.log("n. elementi " + nstories.length);
-					//var first = nstories[0];
-					//console.log("path primo elemento " + first);
-					//var titolo = snapshot.child(first).val().titolo;
-					//var storia = snapshot.child(first).val().storia;
-					//console.log("contenuto "+first+" "+titolo + "\n" + storia);
-					var tit = []; var aut = []; var par = []; var storia = "";
-					var i; var autore = "";
-					for (i = 0; i< nstories.length; i++) {
-						autore = snapshot.child(nstories[i]).val().autore;
-						storia = snapshot.child(nstories[i]).val().storia;
-						aut.push(autore);
-						par.push(storia);
-						
-					}
-					var story = "";
-					for (i in aut)  {
-					if (aut[i]!=undefined) {
-					if (i <= 0) {pt = " class=\"pt-5\"";}
-						story +=
-						"<div class=\"swiper-slide\">"+"\n"+
-						"<p class='text-left'>"+par[i]+"</p>"+"\n"+
-						"<h4 class='my-5 pb-5'>"+aut[i]+"</h4>"+"\n"+
-						"</div>"+"\n";
-						}
-					}
-					var all = 
-					
-					"<div class=\"mt-5 swiper-wrapper\">"+"\n"+
-					story+"\n"+
-					"</div>"+"\n"+
-					"<div class=\"swiper-pagination\"></div>"+"\n"+
-					"<div class=\"swiper-button-prev swiper-button-black text-black-50\"></div>"+"\n"+
-					"<div class=\"swiper-button-next swiper-button-black text-black-50\"></div>"+"\n"+
+  // logged user auth declaration
+  const auth = firebase.auth();
 
-					"";
-					document.getElementById("all").innerHTML = all;
-		} catch(err) {
-			document.getElementById("all").innerHTML = "<div class ='my-5'>"+"\n"+
-			"<h2>Nessuna storia ancora pubblicata</h2>"+"\n"+
-			'<a href="Racconta_una_storia.html"  class="my-5 btn btn-secondary btn-lg btn-block">Racconta la tua storia</a>'+"\n"+
-			"</div>\n";
-		}
-		
-					
-	 var mySwiper = new Swiper (
-	'.swiper-container', {
-	direction: 'horizontal',
-	loop: true, 
-	pagination: {	
-		el: '.swiper-pagination',
-		dynamicBullets: true,
-	}, 
-	navigation: {
-		nextEl: '.swiper-button-next', 
-		prevEl: '.swiper-button-prev',
-		},
-    scrollbar: {
-      container :'.swiper-scrollbar',
-      visibility: false  
-    }
-	});
+  loginButton.addEventListener("click", e => {
+      const email = inputEmail.value;
+      const pass = inputPassword.value;
+      const promise = auth.signInWithEmailAndPassword(email,pass);
+      promise.catch(e => console.log("err"));
   });
-	</script>
+
+  logoutButton.addEventListener("click", e => {
+  firebase.auth().signOut();
+  });
+  
+ firebase.auth().onAuthStateChanged(firebaseUser => {
+  	if (firebaseUser) {
+  		loginButton.classList.add("hide");
+  		logoutButton.classList.remove("hide");
+  		inputEmail.classList.add("d-none");
+  		inputPassword.classList.add("d-none");
+  		signIn.classList.add("d-none");
+  		} else {
+  		console.log("not logged in");
+  		loginButton.classList.remove("hide");
+  		logoutButton.classList.add("hide");
+  		inputEmail.classList.remove("d-none");
+  		inputPassword.classList.remove("d-none");
+  		signIn.classList.remove("d-none");
+  	}
+
+  });
+ 
+
+  
+</script>
 </body>
 </html>

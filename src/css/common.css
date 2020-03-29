@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Gotu&display=swap');
+/* {font-family: 'Open Sans', sans-serif;}*/
+* {font-family: 'Gotu', sans-serif;transition:all .5s;}
+
+a {color: black;transition:.2s;}
+
+.hide {visibility:hidden;} 
+ 
+a:hover {font-weight:bold; transition:.2s;text-decoration:none;}
+
+a:focus {text-decoration: none;}
+
+.fixed-bottom {z-index:0!important;}
+
+.swiper-container {margin-top:0!important;}
+
+.swiper-wrapper {height: 100%;}
+
+.swiper-slide {overflow-y: scroll; bottom:50px;}
+
+.swiper-slide::-webkit-scrollbar{display:none;}
+
+section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
+
+/*body {
+ background-image: url("src/img/sfondo.png");
+ background-repeat: repeat;
+ background-size: cover; 
+}
+.navbar {
+ background-image: url("src/img/sfondo.png");
+}*/
+.navbar {
+  background-color:#F6F3E2!important;
+}
+.navbar:hover {
+  background-color:#D8D2B2!important;
+}
+.navbar ul li {
+	width:100%;
+	align-self:center;
+}
+.navbar ul li a:hover {
+	color:#111111!important;
+}
+.navbar ul li:hover {
+  background-color:#F6F3E2!important;
+  border-radius:5px;
+}
+.downarrow {
+  color:#D4CDA5!important;
+}
+body {
+	background: linear-gradient(180deg, #F6F3E2 0%, #D8D2B2 100%)
+}
+footer {
+	background: linear-gradient(180deg, #D8D2B2 0%, #D4CDA5 100%)
+}
+.navbar {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  background-size: cover; 
+  top: 0;
+}
+@media only screen and (min-width: 770px) {
+
+	#navbarlogo {
+		width: 50px!important;
+	height: auto;
+	}
+	.navbar-brand {
+		font-size: 1.5em;
+	}
+}
+#navbarlogo {
+	border-radius: 5em;
+}

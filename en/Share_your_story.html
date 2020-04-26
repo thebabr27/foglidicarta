@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="utf-8">
+<meta name="author" content="theBabr">
+<meta name="theme-color" content="#F6F3E2">
+<title>Share your story</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
+<link rel="stylesheet" href="./src/css/common.css">
+
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
+<div class="navbar-brand mt-auto">
+	<a href="index.html">
+		<div class="d-inline-block"><img id="navbarlogo" src="./src/img/logo.png" width="30" height="30" alt=""></div>
+	</a>
+	Fogli di Carta
+</div>
+<button class="navbar-toggler" type="button" 
+data-toggle="collapse" data-target="#theNavbar" 
+aria-controls="theNavbar" aria-expanded="false" 
+aria-label="Toggle navigation">
+	<span class="fa fa-bars"></span>
+</button>
+<div id="theNavbar" class="navbar-collapse collapse ">
+<ul class="navbar-nav ml-auto">
+<li><a href="The_project.html" class="nav-link text-center">The project</a></li>
+<li><a href="The_stories.html" class="nav-link text-center">The stories</a></li>
+<li><a class="nav-link text-center">Share your story</a></li>
+<li><a href="Contacts.html" class="nav-link text-center">Contacts</a></li>
+<li><a href="en\index.html" class="nav-link text-center">Italian version</a></li>
+</ul>
+</div>
+</nav><main id="all" class=" container my-5">
+<h1 class=" text-center mt-5 mb-2">Share your story</h1>
+<div class="row "><div class=" col-12 order-2">
+<br>
+</div><div class=" col-12 order-3">
+<div class=" form-group">
+<label>Name
+</label><input id="inputAutore" class=" form-control  bg-transparent" placeholder="Protect your privacy, use a fancy name." required="">
+<br>
+</div></div><div class=" col-12 order-4">
+<div class=" form-group">
+<label>Email
+</label><input id="inputEmail" class=" form-control  bg-transparent" placeholder="Insert an email (optional)">
+<br>
+</div></div><div class=" col-12 order-6 col-md-6">
+<div id="textareadiv" class=" form-group" onclick="expandTextarea()">
+<label>Story
+</label><textarea id="inputStoria" class=" form-control  bg-transparent" rows="7" cols="50" placeholder="Insert here your story" required=""></textarea><br>
+</div></div><div class=" col-12 order-5 order-md-6 col-md-6">
+<div>
+<h6>Here are a few hints to help you write  your story.
+</h6><ul>
+<li>along the path
+</li><li>there is a crossroads, perhaps a deception
+</li><li>in the dark,  the balance breaks
+</li><li>from new encounters ... the journey continues
+</li><li>it is difficult to climb a mountain
+</li><li>from the top ... many horizons
+</li></ul></div></div><div class=" col-12 order-7">
+<div class=" form-group">
+<div class=" form-check">
+<input id="mycheckbox" onclick="check()" class=" form-check-input" type="checkbox" checked="">
+<div>
+By submitting your story, you accept the site's <a href="Terms_and_conditions.html">terms and conditions.
+</a></div></div><button id="send" class="my-5 shadow btn btn-secondary btn-lg btn-block" onclick="sendTo()">Send
+</button></div></div></div></main>
+<section class="">
+<footer class="border-top pt-4">
+<div class="container">
+	<div class="row">
+		<div class="col-6 col-md-4">
+			<ul class="list-unstyled text-small">
+				<li><a href="index.html">Fogli Di Carta</a></li>
+				<li><a class="small" >&copy Copyright 2019/2020</a></li>
+			</ul>
+		</div>
+		<div class="col-6 col-md-4 order-md-3">
+			<ul class="list-unstyled text-small">
+				<li><a>Follow us</a></li>
+				<li>
+				<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span></a>
+				<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-6 col-md-4">
+			<ul class="list-unstyled text-small">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="The_project.html">The project</a></li>
+				<li><a href="The_stories.html">The stories</a></li>
+				<li><a href="Share_your_story.html">Share your story</a></li>
+				<li><a href="Contacts.html">Contacts</a></li>
+				<li><a href="Terms_and_conditions.html">Terms and conditions</a></li>
+				<li><a href="privacy.html">Privacy policy</a></li>
+				<li><a href="admin.html">Admin</a></li>
+				<li><a href="login.html">Login</a></li>
+			</ul>
+		</div> 
+	</div>
+</div>
+</footer>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+
+<script>
+
+   // Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
+    authDomain: "foglidicarta-faccf.firebaseapp.com",
+    databaseURL: "https://foglidicarta-faccf.firebaseio.com",
+    projectId: "foglidicarta-faccf",
+    storageBucket: "foglidicarta-faccf.appspot.com",
+    messagingSenderId: "211559477338",
+    appId: "1:211559477338:web:3a3262a4cdaf433cd0e863"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  
+  var data = new Date();
+  
+  const inputStoria = document.getElementById("inputStoria");
+  const inputAutore = document.getElementById("inputAutore");
+  const inputEmail = document.getElementById("inputEmail");
+  const mycheckbox = document.getElementById("mycheckbox");
+  const send = document.getElementById("send");
+  mycheckbox.checked = true;
+  function check() {
+	  if (mycheckbox.checked == true){ 
+		send.removeAttribute("disabled"); 
+		send.innerHTML = "Send";
+	  } else { 
+		 send.setAttribute("disabled", true); 
+		 send.innerHTML = "Please accept terms and conditions"
+	  }
+ }
+  
+  function sendTo() {
+  send.innerHTML = '<text>Sending</text>'+
+	'<div class="mx-2 spinner-border spinner-border-sm" role="status">'+
+	'<span class="sr-only">Loading...</span>'+
+	'</div>';
+  var path = data.getMonth()+1+inputAutore.value +"_"+data.getTime();
+  if (inputAutore.value == "") {inputAutore.value = "Anonimo"};
+	  firebase.database().ref('waitinglist/'+path).set({
+		autore: inputAutore.value,
+		storia: inputStoria.value,
+		email: inputEmail.value,
+	  });
+	  setTimeout(function(){ 
+	  document.getElementById("all").innerHTML =
+	  '<div class="row"><div class="col-12 text-center">\n'+
+	  "<h2 class=\'mt-5 text-center\'>Thank you "+inputAutore.value+" for sending your story!</h2>\n"+
+	  "<p class=\'mt-5 text-center\'>It will be published soon.</p>\n"+
+	  "<button class=\"my-5 shadow btn btn-secondary btn-lg btn-block\" onclick=\"home()\">Back to the home</button>\n"+
+	  '</div></div>'
+	  }, 3000);
+	}
+	function home() {
+	window.location.replace("index.html");
+	}
+
+	 var mySwiper = new Swiper (
+	'.swiper-container', {
+	direction: 'horizontal',
+	loop: true, 
+	pagination: {	
+		el: '.swiper-pagination',
+		dynamicBullets: true,
+	}, 
+	navigation: {
+		nextEl: '.swiper-button-next', 
+		prevEl: '.swiper-button-prev',
+		}, scrollbar: {
+			el: '.swiper-scrollbar',
+		},
+	});
+	</script>
+</body>
+</html> 

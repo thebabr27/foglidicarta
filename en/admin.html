@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="it"><head>
+<meta charset="utf-8">
+<meta name="author" content="theBabr">
+<meta name="theme-color" content="#F6F3E2">
+<title>Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
+<link rel="stylesheet" href="./src/css/common.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
+<div class="navbar-brand mt-auto">
+	<a href="index.html">
+		<div class="d-inline-block"><img id="navbarlogo" src="./src/img/logo.png" width="30" height="30" alt=""></div>
+	</a>
+	Fogli di Carta
+</div>
+<button class="navbar-toggler" type="button" 
+data-toggle="collapse" data-target="#theNavbar" 
+aria-controls="theNavbar" aria-expanded="false" 
+aria-label="Toggle navigation">
+	<span class="fa fa-bars"></span>
+</button>
+<div id="theNavbar" class="navbar-collapse collapse ">
+<ul class="navbar-nav ml-auto">
+<li><a href="The_project.html" class="nav-link text-center">The project</a></li>
+<li><a href="The_stories.html" class="nav-link text-center">The stories</a></li>
+<li><a href="Share_your_story.html" class="nav-link text-center">Share your story</a></li>
+<li><a href="Contacts.html" class="nav-link text-center">Contacts</a></li>
+<li><a href="..\index.html" class="nav-link text-center">Italian version</a></li>
+
+</ul>
+</div>
+</nav>
+<main class="container-fluid my-5">
+
+<div id="edit" class="d-none">
+<h4 class="my-3">Modifica in corso della storia n.<span id="storyNumber"></span></h4>
+<textarea id="editarea" class=" form-control "></textarea>
+<button class="my-4 btn btn-secondary btn-block" onclick="changes()">Save changes</button>
+</div>
+<div id="all">
+<div id="tableresponsive" class="table-responsive text-center">
+<table id="table" class="table table-striped table-sm">
+	<div class="spinner-border mt-5" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+</table>
+</div>
+
+<div id="tableresponsivePubl" class="mt-3 table-responsive text-center">
+<table id="tablePubl" class="table table-striped table-sm">
+	<div class="spinner-border mt-5" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+</table>
+</div>
+</div>
+</main>
+<section class="">
+<footer class="border-top pt-4">
+<div class="container">
+	<div class="row">
+		<div class="col-6 col-md-4">
+			<ul class="list-unstyled text-small">
+				<li><a href="index.html">Fogli Di Carta</a></li>
+				<li><a class="small" >&copy Copyright 2019/2020</a></li>
+			</ul>
+		</div>
+		<div class="col-6 col-md-4 order-md-3">
+			<ul class="list-unstyled text-small">
+				<li><a>Follow us</a></li>
+				<li>
+				<a href="https://www.facebook.com/Fogli-Di-Carta-105480417494151/"><span class="fab fa-facebook-f"></span></a>
+				<a href="https://www.instagram.com/fogli.di.carta/"><span class="fab fa-instagram"></span></a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-6 col-md-4">
+			<ul class="list-unstyled text-small">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="The_project.html">The project</a></li>
+				<li><a href="The_stories.html">The stories</a></li>
+				<li><a href="Share_your_story.html">Share your story</a></li>
+				<li><a href="Contacts.html">Contacts</a></li>
+				<li><a href="Terms_and_conditions.html">Terms and conditions</a></li>
+				<li><a href="privacy.html">Privacy policy</a></li>
+				<li><a href="admin.html">Admin</a></li>
+				<li><a href="login.html">Login</a></li>
+			</ul>
+		</div> 
+	</div>
+</div>
+</footer>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+
+<script>
+   // Your web app's Firebase configuration
+var firebaseConfig = {
+    apiKey: "AIzaSyBXTikd9cHlOQrAbK-F-lObaTgfZxe0fM0",
+    authDomain: "foglidicarta-faccf.firebaseapp.com",
+    databaseURL: "https://foglidicarta-faccf.firebaseio.com",
+    projectId: "foglidicarta-faccf",
+    storageBucket: "foglidicarta-faccf.appspot.com",
+    messagingSenderId: "211559477338",
+    appId: "1:211559477338:web:3a3262a4cdaf433cd0e863"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
+	const outputStoria = document.getElementById("outputStoria");
+	const outputAutore = document.getElementById("outputAutore");
+	const outputEmail = document.getElementById("outputEmail");
+	const outputStoriaPubl = document.getElementById("outputStoriaPubl");
+	const outputAutorePubl = document.getElementById("outputAutorePubl");
+	const outputEmailPubl = document.getElementById("outputEmailPubl");
+  
+firebase.auth().onAuthStateChanged(firebaseUser => {
+  	if (firebaseUser) {
+								readPublished("published");
+								readDbFolder("waitinglist");
+	} else {
+								console.log("not logged in");
+								
+								var element = document.getElementsByClassName("spinner-border")[0];
+														element.parentNode.removeChild(element);
+								document.getElementById("all").innerHTML = 
+								'<h1 class="text-center">Sorry, not allowed to see this content.</h1>'+'\n'+
+								'<a href="index.html" class="btn text-white btn-link btn-secondary btn-block">Torna alla home</a>'+'\n'+
+								'';
+	};
+  	
+  });
+  
+  function readDbFolder(folder) {
+						var ref = firebase.database().ref("waitinglist");
+								ref.once("value").then(function(snapshot) {
+														var mytable = "";
+														 try {
+															var nstories = Object.keys(snapshot.val());
+															var aut = []; var par = []; var mail = [];
+															var i;
+															for (i = 0; i< nstories.length; i++) {
+																autore = snapshot.child(nstories[i]).val().autore;
+																storia = snapshot.child(nstories[i]).val().storia;
+																email = snapshot.child(nstories[i]).val().email;
+																aut.push(autore);
+																par.push(storia);
+																mail.push(email);
+															}
+														} catch(err) {
+															mytable = "<h2>Nessuna storia da pubblicare</h2>\n";
+								}
+								genTable1(snapshot, nstories, mytable, "table");
+								});
+  }
+  
+  function readPublished(folder) {
+						var ref = firebase.database().ref("published");
+								ref.once("value").then(function(snapshot) {
+														var mytable = "";
+														try {
+															var nstories = Object.keys(snapshot.val());
+															
+																	var aut = []; var par = []; var mail = [];
+																	var autore = ""; var storia = ""; 	var email = ""; 
+																	var i;
+																	for (i = 0; i< nstories.length; i++) {
+																		autore = snapshot.child(nstories[i]).val().autore;
+																		storia = snapshot.child(nstories[i]).val().storia;
+																		email = snapshot.child(nstories[i]).val().email;
+																		aut.push(autore);
+																		par.push(storia);
+																		mail.push(email);
+																	}
+															}
+														catch(err) {
+															mytable = "<h2>Nessuna storia da pubblicare</h2>\n";
+														}														
+								genTable2(snapshot, nstories, mytable, "tablePubl");
+														
+								});
+  }
+  
+  function genTable1(snapshot, nstories, mytable, mytableid) {
+								var i; for (var i in nstories) {
+													autore = snapshot.child(nstories[i]).val().autore;
+													storia = snapshot.child(nstories[i]).val().storia;
+													email = snapshot.child(nstories[i]).val().email;
+													mytable+="<tr id=\""+i+"\">"+"\n"+
+													"<td>"+autore+"</td>"+"\n"+
+													"<td>"+email+"</td>"+"\n"+
+													"<td id='story"+[i]+"'>"+storia+
+													"</td>"+"\n"+
+													"<td><div class='btn-group mr-2'>"+"\n"+
+													"<button class='btn btn-sm btn-outline-success' onclick=\"publish("+i+")\">Publish</button>"+"\n"+
+													"<button class='btn btn-sm btn-outline-warning' onclick=\"modified("+i+")\">Edit</button>"+"\n"+
+													"<button class='btn btn-sm btn-outline-danger' onclick=\"mydelete("+i+")\">Delete</button></div></td>"+"\n"+
+												  "</tr>"+"\n";
+								}
+								  
+								document.getElementById("tableresponsive").innerHTML = 
+								'<table id="'+mytableid+'" class="table table-striped table-sm">'+"\n"+
+								  "<h3>Waiting List</h3>"+"\n"+
+								  "<tr>"+"\n"+
+									"<th>Author</th>"+"\n"+
+									"<th>Email</th>"+"\n"+
+									"<th>Story</th>"+"\n"+
+									"<th>Edit</th>"+"\n"+
+									"</tr>"+"\n"+
+								mytable+
+								'</table>';
+  }
+  function genTable2(snapshotPubl, nstories, mytable, mytableid) {
+														var mytable = "";
+											var i; for (var i in nstories) {
+													autore = snapshotPubl.child(nstories[i]).val().autore;
+													storia = snapshotPubl.child(nstories[i]).val().storia;
+													email = snapshotPubl.child(nstories[i]).val().email;
+													mytable+="<tr id=\""+i+"\">"+"\n"+
+													"<td>"+autore+"</td>"+"\n"+
+													"<td>"+email+"</td>"+"\n"+
+													"<td id='storyPubl"+[i]+"'>"+storia+
+													"</td>"+"\n"+
+													"<td><div class='btn-group mr-2'>"+"\n"+
+													"<button class='btn btn-sm btn-outline-success' onclick=\"sendback("+i+")\">BackToWL</button>"+"\n"+
+												  "</tr>"+"\n";
+								}
+								  
+								document.getElementById("tableresponsivePubl").innerHTML = 
+								'<table id="'+mytableid+'" class="table table-striped table-sm">'+"\n"+
+								  "<h3>Published</h3>"+"\n"+
+								  "<tr>"+"\n"+
+									"<th>Author</th>"+"\n"+
+									"<th>Email</th>"+"\n"+
+									"<th>Story</th>"+"\n"+
+									"<th>Edit</th>"+"\n"+
+									"</tr>"+"\n"+
+								mytable+
+								'</table>';
+  }
+  
+  function mydelete(ind) {   
+		var ref = firebase.database().ref("waitinglist");
+		ref.once("value").then(function(snapshot) {
+		var nstories = Object.keys(snapshot.val());
+		firebase.database().ref('waitinglist/'+nstories[ind]).remove();
+	setTimeout(()=>location.reload(),300);
+		});
+	}
+	
+  function sendback(ind) {
+	var ref = firebase.database().ref("published");
+	ref.once("value").then(function(snapshot) {
+		var nstories = Object.keys(snapshot.val());
+		var aut = []; var par = []; var mail = [];
+		var autore = "";  var storia = ""; 	var email = ""; 
+		var i;
+		for (i = 0; i< nstories.length; i++) {
+			autore = snapshot.child(nstories[i]).val().autore;
+			storia = snapshot.child(nstories[i]).val().storia;
+			email = snapshot.child(nstories[i]).val().email;
+			aut.push(autore);
+			par.push(storia);
+			mail.push(email);
+		}
+		document.getElementById(ind).innerHTML = "";
+		
+		firebase.database().ref('waitinglist/'+nstories[ind]).set({
+		autore: aut[ind],
+		storia: par[ind],
+		email: mail[ind],
+	  });
+	firebase.database().ref('published/'+nstories[ind]).remove();
+	ref = firebase.database().ref("public");
+	firebase.database().ref('public/'+nstories[ind]).remove();
+	setTimeout(()=>location.reload(),300);
+	});
+  }
+  
+  function modified(ind) {
+  
+	var modifiedstory = (document.getElementById("story"+ind).innerHTML);
+	document.getElementById("edit").classList.remove("d-none");
+	console.log(document.getElementById("editarea").value = modifiedstory);
+	document.getElementById("storyNumber").innerHTML = ind;
+  }
+  
+  function changes() {
+	var ref = firebase.database().ref("waitinglist");
+	var ind = document.getElementById("storyNumber").innerHTML;
+	var modifiedstory = (document.getElementById("editarea").value);
+ref.once("value").then(function(snapshot) {
+		var nstories = Object.keys(snapshot.val());
+		var aut = []; var par = []; var mail = [];
+		var autore = "";  var storia = ""; 	var email = ""; 
+		var i;
+		for (i = 0; i< nstories.length; i++) {
+			autore = snapshot.child(nstories[i]).val().autore;
+			storia = snapshot.child(nstories[i]).val().storia;
+			email = snapshot.child(nstories[i]).val().email;
+			aut.push(autore);
+			par.push(storia);
+			mail.push(email);
+		}
+		document.getElementById(ind).innerHTML = "";
+		
+		firebase.database().ref('waitinglist/'+nstories[ind]).set({
+			autore: aut[ind],
+			storia: modifiedstory,
+			email: mail[ind],
+		});
+	setTimeout(()=>location.reload(),300);
+		});
+  }
+  
+  function publish(ind) {
+	var ref = firebase.database().ref("waitinglist");
+   ref.once("value").then(function(snapshot) {
+		var nstories = Object.keys(snapshot.val());
+		var aut = []; var par = []; var mail = [];
+		var autore = "";  var storia = ""; 	var email = ""; 
+		var i;
+		for (i = 0; i< nstories.length; i++) {
+			autore = snapshot.child(nstories[i]).val().autore;
+			storia = snapshot.child(nstories[i]).val().storia;
+			email = snapshot.child(nstories[i]).val().email;
+			aut.push(autore);
+			par.push(storia);
+			mail.push(email);
+		}
+		document.getElementById(ind).innerHTML = "";
+		firebase.database().ref('published/'+nstories[ind]).set({
+		autore: aut[ind],
+		storia: par[ind],
+		email: mail[ind]
+	  });	
+		document.getElementById(ind).innerHTML = "";
+		firebase.database().ref('public/'+nstories[ind]).set({
+		autore: aut[ind],
+		storia: par[ind],
+		email: ""
+	  });		
+	firebase.database().ref('waitinglist/'+nstories[ind]).remove();
+	setTimeout(()=>location.reload(),300);
+	});
+  };
+
+</script>
+</body>
+</html>

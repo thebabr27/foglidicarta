@@ -31,11 +31,17 @@ section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
 .navbar {
  background-image: url("src/img/sfondo.png");
 }*/
-.navbar {
+.navbar, .modal-body, .modal-footer {
   background-color:#F6F3E2!important;
 }
 .navbar:hover {
   background-color:#D8D2B2!important;
+}
+.btn-secondary {
+	background-color:#B7B287!important;
+}
+.btn-secondary:hover {
+	background-color:#848059!important;
 }
 .navbar ul li {
 	width:100%;

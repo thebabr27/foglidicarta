@@ -16,24 +16,51 @@
 <body>
 
 <!-- Modal -->
-<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade position-absolute" id="cookieModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-       Questo sito fa uso di cookie per migliorare l’esperienza di navigazione degli utenti e per raccogliere informazioni sull’utilizzo del sito stesso. Utilizziamo sia cookie tecnici sia cookie di parti terze per inviare messaggi promozionali sulla base dei comportamenti degli utenti. Può conoscere i dettagli consultando la nostra privacy policy qui. Proseguendo nella navigazione si accetta l’uso dei cookie; in caso contrario è possibile abbandonare il sito.
-      </div>
-      <div class="modal-footer">
-        <a role="button" class="btn btn-secondary" href="en\index.html" >English Version</a>
+   <div class="modal-content">
+      <div class="modal-body p-0">
+ <div class="accordion" id="accordionExample">
+  <div class="card">
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        Questo sito fa uso di cookie per migliorare l’esperienza di navigazione degli utenti e per raccogliere informazioni sull’utilizzo del sito stesso. Utilizziamo sia cookie tecnici sia cookie di parti terze per inviare messaggi promozionali sulla base dei comportamenti degli utenti. Può conoscere i dettagli consultando la nostra 
+   	<a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><b>privacy policy.</b></a> Proseguendo nella navigazione si accetta l’uso dei cookie; in caso contrario è possibile abbandonare il sito.
+  </div>
+    </div>
+  </div>
+  <div class="card">
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body text-center">      
+	  <a href="#" class="p-2 float-right" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" aria-label="Close">
+          <span aria-hidden="true" class="fa fa-times"></span>
+        </a>
+	  <h1 class="ml-1">Privacy Policy</h1>
+        <p>
+		privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy 
+		privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy 
+		</p>
       </div>
     </div>
   </div>
+</div>
+      <div class="modal-footer">
+		<a role="button" class="btn btn-secondary-outline" href="en\index.html" >English Version</a>
+		<a role="accept" data-dismiss="modal" class="btn btn-secondary" href="#" >Accetta Cookies</a>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <h1 class="downarrow text-center fixed-bottom my-5 text-white"><span class="fa fa-lg fa-angle-down"></span></h1>
 <nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
 <div class="navbar-brand mt-auto">
 	<a>
-		<div class="d-inline-block"><img id="navbarlogo" src="./src/img/logo.png" width="30" height="30" alt=""></div>
+		<div class="d-inline-block">
+		<img id="navbarlogo" src="./src/img/logo.png" width="30" height="30" alt="">
+		</div>
 	</a>
 	Fogli di Carta
 </div>
@@ -130,6 +157,7 @@ Un giorno ho deciso di raccontare la mia storia a qualcuno che avesse voglia di 
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+<script type="text/javascript" src="src/script/cookies.js"></script>
 <script type="text/javascript" src="src/script/script.js"></script>
 </body>
 </html>

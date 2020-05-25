@@ -16,18 +16,44 @@
 <body>
 
 <!-- Modal -->
-<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade position-absolute" id="cookieModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
    <div class="modal-content">
-      <div class="modal-body">
-       This site uses cookies to improve the browsing experience of users and to collect information on the use of the site itself. Use both technical cookies and cookies of requested parts to send promotional messages based on the recipients of the users. You can know the details by consulting our privacy policy here. By continuing to browse, you accept the use of cookies; otherwise it is possible to leave the site.
-      </div>
-      <div class="modal-footer">
-        <a role="button" class="btn btn-secondary" href="..\index.html">Italian Version</a>
+      <div class="modal-body p-0">
+ <div class="accordion" id="accordionExample">
+  <div class="card">
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        This site uses cookies to improve the browsing experience of users and to collect information on the use of the site itself. Use both technical cookies and cookies of requested parts to send promotional messages based on the recipients of the users. You can know the details by consulting our 
+		<a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><b>privacy policy.</b></a> By continuing to browse, you accept the use of cookies; otherwise it is possible to leave the site.
+  </div>
+    </div>
+  </div>
+  <div class="card">
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body text-center">      
+	  <a href="#" class="p-2 float-right" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" aria-label="Close">
+          <span aria-hidden="true" class="fa fa-times"></span>
+        </a>
+	  <h1 class="ml-1">Privacy Policy</h1>
+        <p>
+		privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy 
+		privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy privacy 
+		</p>
       </div>
     </div>
   </div>
 </div>
+      <div class="modal-footer">
+        <a role="button" class="btn btn-secondary-outline" href="..\index.html">Italian Version</a>
+		<a role="accept" data-dismiss="modal" class="btn btn-secondary" href="#" >Accept Cookies</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 
 <h1 class="downarrow text-center fixed-bottom my-5 text-white"><span class="fa fa-lg fa-angle-down"></span></h1>
 <nav class="navbar navbar-expand-lg fixed-top  shadow bg-light"> 
@@ -130,6 +156,7 @@ One day I decided to tell my story to someone who wanted to hear it. And, at tha
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
+<script type="text/javascript" src="src/script/cookies.js"></script>
 <script type="text/javascript" src="src/script/script.js"></script>
 </body>
 </html>

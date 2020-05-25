@@ -11,6 +11,8 @@ a:hover {font-weight:bold; transition:.2s;text-decoration:none;}
 
 a:focus {text-decoration: none;}
 
+button:focus {outline: none;}
+
 .fixed-bottom {z-index:0!important;}
 
 .swiper-container {margin-top:0!important;}
@@ -31,7 +33,7 @@ section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
 .navbar {
  background-image: url("src/img/sfondo.png");
 }*/
-.navbar, .modal-body, .modal-footer {
+.navbar, .modal-body, .modal-footer, .card-body {
   background-color:#F6F3E2!important;
 }
 .navbar:hover {
@@ -40,8 +42,12 @@ section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
 .btn-secondary {
 	background-color:#B7B287!important;
 }
-.btn-secondary:hover {
+.btn-secondary:hover,.btn-secondary-outline:hover {
 	background-color:#848059!important;
+	color:white;
+}
+.btn-secondary-outline {
+	border: 1px solid #848059!important;
 }
 .navbar ul li {
 	width:100%;
@@ -63,6 +69,7 @@ body {
 footer {
 	background: linear-gradient(180deg, #D8D2B2 0%, #D4CDA5 100%)
 }
+.unclickable { pointer-events: none;}
 .navbar {
   position: -webkit-sticky; /* Safari */
   position: sticky;

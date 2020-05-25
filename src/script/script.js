@@ -1,7 +1,9 @@
 
-if (!window.localStorage.getItem("cookies")) {
-	$('#cookieModal').modal();
-	$('#cookieModal').on('hidden.bs.modal', function (e) {
-	  window.localStorage.setItem("cookies", "true");
-	})
-}
+$('.navbar-toggler').on('click', ()=>{
+	$('.navbar-toggler span').toggleClass('fa-bars');
+	$('.navbar-toggler span').toggleClass('fa-times');
+	$('.navbar-toggler').toggleClass('unclickable');
+	setTimeout(()=>{
+		$('.navbar-toggler').toggleClass('unclickable');
+	},600);
+});

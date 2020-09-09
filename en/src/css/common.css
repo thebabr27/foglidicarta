@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Gotu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
 /* {font-family: 'Open Sans', sans-serif;}*/
-* {font-family: 'Gotu', sans-serif;transition:all .5s;}
+.navbar-brand, #par1 {font-family: 'Alex Brush', cursive!important; font-size:30px!important; transition:all .5s;}
+
+#par1 {font-size:40px!important; transition:all .5s;}
+
+* {font-family: 'Raleway', sans-serif;transition:all .5s;}
 
 a {color: black;transition:.2s;}
 
@@ -34,17 +39,21 @@ section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
  background-image: url("src/img/sfondo.png");
 }*/
 .navbar, .modal-body, .modal-footer, .card-body {
-  background-color:#F6F3E2!important;
+  background-color:#FFFFFF!important;
 }
 .navbar:hover {
-  background-color:#D8D2B2!important;
+  background-color:#F5F5F5!important;
 }
 .btn-secondary {
-	background-color:#B7B287!important;
+	background-color:#FFFFFF!important;
+	color:#4674EA;
+}
+.btn-secondary.disabled, .btn-secondary:disabled {
+	color:#4674EA!important;
 }
 .btn-secondary:hover,.btn-secondary-outline:hover {
-	background-color:#848059!important;
-	color:white;
+	background-color:#4674EA!important;
+	color:#FFFFFF;
 }
 .btn-secondary-outline {
 	border: 1px solid #848059!important;
@@ -54,20 +63,27 @@ section {box-shadow: 0 -8px 12px 0 rgba(0, 0, 0, 0.1);}
 	align-self:center;
 }
 .navbar ul li a:hover {
-	color:#111111!important;
+	color:#FFFFFF!important;
 }
 .navbar ul li:hover {
-  background-color:#F6F3E2!important;
+  background-color:#4674EA!important;
+	color:#FFFFFF!important;
   border-radius:5px;
 }
 .downarrow {
-  color:#D4CDA5!important;
+  color:#F5F5F5!important;
 }
 body {
-	background: linear-gradient(180deg, #F6F3E2 0%, #D8D2B2 100%)
+	background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%)
+}
+footer div div div ul li a {
+	color:#232222!important;
+}
+footer div div div ul li a:hover {
+	color:4674EA!important;
 }
 footer {
-	background: linear-gradient(180deg, #D8D2B2 0%, #D4CDA5 100%)
+	background: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%)
 }
 .unclickable { pointer-events: none;}
 .navbar {

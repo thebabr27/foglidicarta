@@ -6,7 +6,7 @@
 <title>Fogli di Carta</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css">
@@ -285,17 +285,43 @@ Un giorno ho deciso di raccontare la mia storia a qualcuno che avesse voglia di 
 		<div class="col-md-6 col-12">
 			<img  class="w-100 mb-5" src="src/img/cover2.png">
 		</div>
-		<div id="text" class="col-md-6 col-12">
+		<div id="text" class="text-justify col-md-6 col-12">
 			<h4>Grazie al desiderio di una ragazza che ha subito abusi sessuali da quando era bambina e fino alla sua adolescenza, nasce “Fogli di Carta”. L’obiettivo è quello di generare un cambiamento culturale che porti al rispetto e ad una maggior tutela di minori, bambine e bambini. Anche la tua storia è importante... Può aiutare altri a condividere la propria e a non sentirsi "invisibili".
 			</h4>
 		</div>
 	</div>
+	
 	<div class="row">
 		<div class="col-12 my-5">
 			<a href="Le_storie.html" class="shadow btn btn-secondary btn-lg btn-block">Leggi le altre storie</a>
 			<a href="Racconta_una_storia.html"  class="shadow btn btn-secondary btn-lg btn-block">Racconta la tua storia</a>
 		</div>
 	</div>
+	
+	<div class="container">
+	<div class="row">
+	<div class="col-12">
+	<h1 class="text-center mt-5 mb-2">I nostri partners</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-6">
+				<div class="container"><a href="http://www.ecaglobal.org/"><img style="margin-left:20%; margin-top:50px; width:60%; height:auto;" src="./src/img/ECA.jpeg"alt=""></a></div>
+			</div>
+			<div class="col-12 col-md-6">
+				<div class="container"><a href="http://protection4kids.com"><img style="background-color: black; margin-left:20%; margin-top:50px; width:60%; height:auto;" src="./src/img/PROTECTION4KIDS_hor.png"alt=""></a></div>
+			</div>
+			<div class="col-md-3"></div>
+			<div class="col-12 col-md-6">
+				<div class="container"><a href="http://www.vociperlaliberta.it"><img  style="margin-left:20%; margin-top:50px; width:60%; height:auto;"  src="./src/img/Logo_orizzontale_colori.jpg"alt=""></a>
+				
+<div class="text-center my-5"><a href="Contatti.html"><h4><b>vedi altri...</b></h4></a></div>
+				</div>
+			</div>	
+			<div class="col-md-3"></div>
+		</div>
+	</div>
+</div>
+
 </main>
 <section class="">
 <footer class="border-top pt-4">
@@ -337,12 +363,36 @@ Un giorno ho deciso di raccontare la mia storia a qualcuno che avesse voglia di 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-database.js"></script>
 <script type="text/javascript" src="src/script/cookies.js"></script>
 <script type="text/javascript" src="src/script/script.js"></script>
+<script>
+ var mySwiper = new Swiper (
+	'.swiper-container', {
+	direction: 'horizontal',
+	slidesPerView:3,
+	autoplay: {
+        delay: 4500,
+        disableOnInteraction: false,
+	},
+	loop: true, 
+	pagination: {	
+		el: '.swiper-pagination',
+		dynamicBullets: true,
+	}, 
+	navigation: {
+		nextEl: '.swiper-button-next', 
+		prevEl: '.swiper-button-prev',
+		},
+    scrollbar: {
+      container :'.swiper-scrollbar',
+      visibility: false  
+    }
+	});
+  </script>
 </body>
 </html>
